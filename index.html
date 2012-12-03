@@ -1,0 +1,418 @@
+<html>
+<head>
+	<title>Sol Resource</title>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	body {
+		background: #000;
+	}
+	p {
+		margin:0;
+		padding: 0;
+	}
+	#container {
+		position: relative;
+		width:800px;
+		height: 1205px;
+		border:1px solid #888;
+		background: url(assets/Background/Background.png);
+		overflow: hidden;
+
+		color:#fff;
+		font-family:  'Source Sans Pro', sans-serif;
+		font-size: 16px;
+
+	}
+	header {
+		position: absolute;
+		right:0;
+		left:0;
+		height:104px;
+		margin:0;
+		padding:10px 30px;
+		background:url(assets/Interface/topbumpers.png) 0 130px no-repeat,url(assets/Interface/topbaralert.png) no-repeat, url(assets/Interface/topbar.png) no-repeat;
+	}
+	#bumperleft, #bumperright {
+		position: absolute;
+		top:130px;
+		height: 50px;
+		width: 100px;
+		background:url(assets/Interface/topbumpers.png) no-repeat;
+	}
+	#bumperleft {
+		left:0;
+	}
+	#bumperright {
+		right: 0;
+		background:url(assets/Interface/topbumpers.png) no-repeat right;
+	}
+	h1 {
+		font-weight: 200;
+		font-size: 3em;
+		margin: 0;
+		padding:0;
+	}
+	#topStatus {
+		font-size: 1.4em;
+		font-family: eurostile;
+		opacity: 0.99;
+	}
+	#topStatus span {
+		font-weight: bold;
+	}
+	header img {
+		float:right;
+		margin: 10px 24px;
+	}
+	footer {
+		position: absolute;
+		bottom: 0;
+		left:0;
+		right: 0;
+		height:200px;
+		background: url(assets/Interface/lowerbar.png) 0 30px no-repeat;
+	}
+	h3 {
+		font-family: Eurostile;
+		font-weight: normal;
+		margin: 0;
+		padding:0;
+	}
+	footer>h3 {
+		position: absolute;
+		left:80px;
+		font-size: 1.5em;
+	}
+	#fuelLabel {
+		position: absolute;
+		left:50%;
+		font-family: Eurostile;
+		font-size: 1.5em;
+	}
+	#fuelbar {
+		position: absolute;
+		top:30px;
+		left:0px;
+		right:0px;
+		height:7px;
+		padding:16px 0;
+		/*background: url(assets/Interface/energybarbase.png) no-repeat;*/
+		background: -webkit-linear-gradient(left,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.3) 50%);
+		background-clip: content-box !important; 
+		-webkit-mask: url(assets/Interface/lowerbarmask.png);
+	}
+
+	#fuelbar img {
+		position:absolute;
+		left:49%;
+		top:10px;
+	}
+	#missionsButton {
+		position: absolute;
+		background:url(assets/Interface/missionsbutton.png) top left no-repeat;
+		top:55px;
+		left:10px;
+		width:1.2em;
+		height: 1em;
+		padding:6px 80px 80px 3px;
+		font-size: 1.6em;
+		font-family: Eurostile;
+		text-align: center;
+	}
+	#fleetButton {
+		position: absolute;
+		background: url(assets/Interface/fleetbutton.png) top right no-repeat;
+		right:10px;
+		top:55px;
+		width:1.2em;
+		height: 1em;
+		padding:6px 9px 80px 80px;
+		font-size: 1.6em;
+		font-family: Eurostile;
+		text-align: center;
+	}
+	.resourceBar {
+		position: absolute;
+		width: 150px;
+		top: 80px;
+		text-align: center;
+		font-family: Eurostile;
+		opacity: 0.99;
+	}
+	.resourceBar p {
+		font-size: 2.4em;
+		padding:22px;
+	}
+	.resourceBar h3 {
+		font-size: 1.5em;
+	}
+
+
+
+	.yellow {
+		color:#fb0;
+	}
+	.blue {
+		color: #6ce;
+	}
+	.right {
+		float: right;
+		margin-left:1.5em;
+	}
+
+
+	#overlayMenu {
+		position: absolute;
+		top:-826px;
+		height: 992px;
+		width: 800px;
+		background:url(assets/Interface/midbackground.png) no-repeat;
+		-webkit-transition: all 1.2s ease;
+	}
+	#overlayMenu.active {
+		top:0;
+	}
+	#overlayMenu>.active {
+		opacity:0.3;
+	}
+	#overlayClickZone {
+		position: absolute;
+		display:block !important;
+		height: 80px;
+		right:50px;
+		left: 50px;
+		bottom: -40px;
+	}
+	#overlayMenu nav {
+		margin: 138px 0 40px;
+		font-family: eurostile;
+		font-size: 1.4em;
+		overflow: hidden;
+	}
+	#overlayMenu nav ul {
+		list-style: none;
+		margin: 0;
+	}
+	#overlayMenu nav li {
+		display: block;
+		float:left;
+		width:240px;
+		height:90px;
+		line-height: 90px;
+		text-align: center;
+		margin:0;
+	}
+	#overlayMenu nav ul li:nth-child(1) {
+		background: url(assets/Interface/homebutton.png);
+	}
+	#overlayMenu nav ul li:nth-child(1).active {
+		background: url(assets/Interface/homebuttonselect.png);
+	}
+	#overlayMenu nav ul li:nth-child(2) {
+		background: url(assets/Interface/missionbutton.png);
+	}
+	#overlayMenu nav ul li:nth-child(2).active {
+		background: url(assets/Interface/missionbuttonselect.png);
+	}
+	#overlayMenu nav ul li:nth-child(3) {
+		background: url(assets/Interface/logisticsbutton.png);
+	}
+	#overlayMenu nav ul li:nth-child(3).active {
+		background: url(assets/Interface/logisticsbuttonselected.png);
+	}
+	#overlayMenu>div {
+		position: absolute;
+		padding:5px 38px;
+		left:0;
+		right: 0;
+		font-size: 1.6em;
+		font-weight: 400;
+		letter-spacing: 3px;
+		opacity: 0;
+		-webkit-transition: all 0.4s ease;
+	}
+	#overlayMenu.active>.active {
+		opacity: 1.0;
+		z-index: 10;
+
+	}
+
+	.minimalList {
+		list-style: none;
+		padding: 0;
+	}
+	.minimalList li {
+		line-height: 38px;
+		padding:20px 0;
+	}
+	.minimalList img {
+		margin-right: 30px;
+		float: left;
+	}
+	.minimalList li>span {
+		float: right;
+		font-style: italic;
+		font-weight: 200;
+	}
+	.minimalList p {
+		margin:0.5em 0.5em 0em 5.5em;
+		font-size: 0.86em;
+		font-weight: 300;
+		letter-spacing: 0;
+		line-height: 1.2;
+
+	}
+	.mission {
+		font-weight: 200;
+		letter-spacing: 1px;
+		font-size: 0.97em;
+		/*height:90px;*/
+		overflow: hidden;
+		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrownotpushed.png) no-repeat 90% 28px;
+	}
+	.mission.active {
+		height: auto;
+		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrowpushed.png) no-repeat 90% 28px;
+	}
+	.mission div, .minimalList div {
+		display:none;
+	}
+	h2 {
+		font-family: eurostile;
+		font-weight: normal;
+		line-height: 24px;
+		padding: 31px;
+		margin: 0;
+	}
+	.mission h2 {
+		font-size:1.7em;
+	}
+	.mission p {
+		margin: 8px 20px;
+	}
+	.mission ul {
+		list-style: square;
+		list-style-position: inside;
+		font-style: italic;
+		margin: 20px;
+		margin-right: 100px;
+		padding: 0;
+	}
+
+	#logisticsTab {
+		background: url(assets/logistics/logisticsplaceholder.png) no-repeat;
+		height: 700px;
+	}
+
+
+
+	</style>
+</head>
+<body>
+<div id="container">
+<div id="overlayMenu">
+	<div id="overlayClickZone"></div>
+	<nav>
+		<ul>
+			<li class="active" rel="homeTab">HOME</li>
+			<li rel="missionsTab">MISSIONS</li>
+			<li rel="logisticsTab">LOGISTICS</li>
+		</ul>
+	</nav>
+	<div id="homeTab" class="active">
+		<ul class="minimalList">
+			<li><img src="assets/Interface/notificationicon.png">Welcome aboard!
+				<div><p>With a couple of repairs the station will be up and running at full capactiy in no time. Keep resources coming to the station, while keeping an eye on the logistics and you'll be fine!</p></div></li>
+			<li><img src="assets/Interface/notificationicon.png"><span>Missions</span>A new mission is available </li>
+			<li><img src="assets/Interface/notificationicon.png"><span>Logistics</span>Station systems damaged </li>
+		</ul>
+	</div>
+	<div id="missionsTab">
+		<div class="mission">
+			<h2>Mission One</h2>
+			<div>
+			<p><span class="yellow">Calibrate</span> the sensors on the Series I probes after traveling to a nearby asteroid field. Additionally, <span class="blue">more resources are needed</span> to begin repairs on logistical systems.</p>
+			<!-- <img src="play mission"> -->
+			<ul>
+				<li>Travel to an asteroid field<span class="right">0/1</span></li>
+				<li><span class="yellow">Scan</span> three asteroids<span class="right">0/3</span></li>
+				<li><span class="blue">Retrieve</span> two asteroids<span class="right">0/2</span></li>
+			</ul></div>
+		</div>
+	</div>
+	<div id="logisticsTab">
+
+
+	</div>
+</div>
+<header>
+<img src="assets/Interface/powerbutton.png">
+<img src="assets/Interface/settingsbutton.png">
+<h1>Lunar Orbital Station</h1>
+<p id="topStatus">STATUS: <span>DAMAGED</span></p>
+
+	<div id="bumperleft"></div>
+	<div id="bumperright"></div>
+</header>
+
+
+
+<footer>
+<h3>FUEL</h3>
+<p id="fuelLabel">50%</p>
+<div id="fuelbar"><img src="assets/Interface/energyglow.png"></div>
+<div id="missionsButton"><p>1</p></div>
+<div id="fleetButton"><p>0</p></div>
+<div class="resourceBar" style="left:100px"><p>20</p><h3>Hydrogen</h3></div>
+<div class="resourceBar" style="left:250px"><p>30</p><h3>Oxygen</h3></div>
+<div class="resourceBar" style="left:400px"><p>40</p><h3>Iron</h3></div>
+<div class="resourceBar" style="left:550px"><p>10</p><h3>Platinum</h3></div>
+
+</footer>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  	$('#overlayClickZone').click(function() {
+  		$('#overlayMenu').toggleClass('active')
+  	});
+
+  	var setFuel = function(newValue) { // newValue is between 0 and 1
+  		if (newValue <=1 && newValue >=0) {
+  			var newValuePercent = Math.floor(newValue*100) + '%';
+  			var scaledValue = newValue*650;
+  			$('#fuelLabel').text(newValuePercent); //floor or round?
+  			if (scaledValue > (140-50)) $('#fuelLabel').css("left", scaledValue + 50)
+			else $('#fuelLabel').css("left", 140)
+  			$('#fuelbar img').css("left", scaledValue + 44)
+  			if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
+			else $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,100,100,0.6) " + (scaledValue+67) + ",rgba(255,150,150,0.2) " + (scaledValue+71) + ")"})
+  		}
+
+  	}
+
+  	setFuel(0.10);
+
+  	$('#overlayMenu nav li').click(function() {
+  		$('#overlayMenu li').removeClass('active');
+  		$(this).addClass('active');
+  		var targetTab = "#" + $(this).attr('rel');
+  		// $('#overlayMenu>.active').fadeOut('fast', function() {
+  		// 	$(this).removeClass('active');
+	  	// 	$(targetTab).fadeIn('fast').addClass('active')
+  		// })
+  		$('#overlayMenu>.active').removeClass('active');
+		$(targetTab).addClass('active');
+  	});
+  	$('.mission, .minimalList li').click(function() {
+  		$(this).toggleClass('active')
+  		$(this).find('div').slideToggle();
+  	});
+
+
+  });
+</script>
+</body>
+</html>
