@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.newlinegaming.solresource"
+        version   = "0.1.0">
+    <name>Sol Resource</name>
+
+    <description>
+        A Space Mining Game
+    </description>
+
+    <author href="http://newlinegaming.com" email="info@newlinegaming.com">
+        Newline Gaming
+    </author>
+
+    <feature name="http://api.phonegap.com/1.0/device" />
+
+    <preference name="phonegap-version" value="2.1.0" />
+    <preference name="orientation"      value="portrait" />
+    <preference name="target-device"    value="tablet" />
+    <preference name="fullscreen"       value="true " />
+
+    <icon src="icon.png" />
+
+</widget>
