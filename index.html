@@ -1,13 +1,13 @@
 <html>
 <head>
 	<title>Sol Resource</title>
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 	<style type="text/css">
 
 	@font-face {
 	  font-family: eurostile;
-	  src: url(fonts/Eurostile);
+	  src: url(fonts/eurostile.ttf);
 	}  
 	body {
 		background: #000;
@@ -20,33 +20,34 @@
 	}
 	#container {
 		position: relative;
-		width:800px;
-		height: 1205px;
-		/*width: 100%;*/
-		/*height: 100%;*/
+		/*width:800px;*/
+		/*height: 1205px;*/
+		width: 100%;
+		height: 100%;
 		/*border:1px solid #888;*/
 		background: url(assets/Background/Background.png);
 		overflow: hidden;
 
 		color:#fff;
 		font-family:  'Source Sans Pro', sans-serif;
-		font-size: 16px;
+		font-size: 12px;
 
 	}
 	header {
 		position: absolute;
 		right:0;
 		left:0;
-		height:104px;
+		height:80px;
 		margin:0;
-		padding:10px 30px;
+		padding:8px 23px;
+		background-size: 100%;
 		background:url(assets/Interface/topbumpers.png) 0 130px no-repeat,url(assets/Interface/topbaralert.png) no-repeat, url(assets/Interface/topbar.png) no-repeat;
 	}
 	#bumperleft, #bumperright {
 		position: absolute;
-		top:130px;
-		height: 50px;
-		width: 100px;
+		top:100px;
+		height: 38px;
+		width: 77px;
 		background:url(assets/Interface/topbumpers.png) no-repeat;
 	}
 	#bumperleft {
@@ -72,15 +73,16 @@
 	}
 	header img {
 		float:right;
-		margin: 10px 24px;
+		margin: 8px 18px;
 	}
 	footer {
 		position: absolute;
 		bottom: 0;
 		left:0;
 		right: 0;
-		height:200px;
-		background: url(assets/Interface/lowerbar.png) 0 30px no-repeat;
+		height:154px;
+		background: url(assets/Interface/lowerbar.png) 0 23px no-repeat;
+		background-size: 100%;
 	}
 	h3 {
 		font-family: Eurostile;
@@ -90,7 +92,7 @@
 	}
 	footer>h3 {
 		position: absolute;
-		left:80px;
+		left:62px;
 		font-size: 1.5em;
 	}
 	#fuelLabel {
@@ -101,11 +103,11 @@
 	}
 	#fuelbar {
 		position: absolute;
-		top:30px;
+		top:23px;
 		left:0px;
 		right:0px;
-		height:7px;
-		padding:16px 0;
+		height:5px;
+		padding:12px 0;
 		/*background: url(assets/Interface/energybarbase.png) no-repeat;*/
 		background: -webkit-linear-gradient(left,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.3) 50%);
 		background-clip: content-box !important; 
@@ -115,16 +117,16 @@
 	#fuelbar img {
 		position:absolute;
 		left:49%;
-		top:10px;
+		top:8px;
 	}
 	#missionsButton {
 		position: absolute;
 		background:url(assets/Interface/missionsbutton.png) top left no-repeat;
-		top:55px;
-		left:10px;
+		top:42px;
+		left:8px;
 		width:1.2em;
 		height: 1em;
-		padding:6px 80px 80px 3px;
+		padding:5px 62px 62px 3px;
 		font-size: 1.6em;
 		font-family: Eurostile;
 		text-align: center;
@@ -132,26 +134,26 @@
 	#fleetButton {
 		position: absolute;
 		background: url(assets/Interface/fleetbutton.png) top right no-repeat;
-		right:10px;
-		top:55px;
+		right:8px;
+		top:42px;
 		width:1.2em;
 		height: 1em;
-		padding:6px 9px 80px 80px;
+		padding:5px 7px 62px 62px;
 		font-size: 1.6em;
 		font-family: Eurostile;
 		text-align: center;
 	}
 	.resourceBar {
 		position: absolute;
-		width: 150px;
-		top: 80px;
+		width: 115px;
+		top: 62px;
 		text-align: center;
 		font-family: Eurostile;
 		opacity: 0.99;
 	}
 	.resourceBar p {
 		font-size: 2.4em;
-		padding:22px;
+		padding:17px;
 	}
 	.resourceBar h3 {
 		font-size: 1.5em;
@@ -173,10 +175,11 @@
 
 	#overlayMenu {
 		position: absolute;
-		top:-826px;
-		height: 992px;
-		width: 800px;
+		top:-635px;
+		height: 763px;
+		width: 100%;
 		background:url(assets/Interface/midbackground.png) no-repeat;
+		background-size: 100%;
 		-webkit-transition: all 1.2s ease;
 	}
 	#overlayMenu.active {
@@ -188,13 +191,13 @@
 	#overlayClickZone {
 		position: absolute;
 		display:block !important;
-		height: 80px;
-		right:50px;
-		left: 50px;
-		bottom: -40px;
+		height: 62px;
+		right:38px;
+		left: 38px;
+		bottom: -31px;
 	}
 	#overlayMenu nav {
-		margin: 138px 0 40px;
+		margin: 106px 0 31px;
 		font-family: eurostile;
 		font-size: 1.4em;
 		overflow: hidden;
@@ -206,9 +209,9 @@
 	#overlayMenu nav li {
 		display: block;
 		float:left;
-		width:240px;
-		height:90px;
-		line-height: 90px;
+		width:185px;
+		height:69px;
+		line-height: 69px;
 		text-align: center;
 		margin:0;
 	}
@@ -232,12 +235,12 @@
 	}
 	#overlayMenu>div {
 		position: absolute;
-		padding:5px 38px;
+		padding:4px 29px;
 		left:0;
 		right: 0;
 		font-size: 1.6em;
 		font-weight: 400;
-		letter-spacing: 3px;
+		letter-spacing: 2px;
 		opacity: 0;
 		-webkit-transition: all 0.4s ease;
 	}
@@ -252,11 +255,11 @@
 		padding: 0;
 	}
 	.minimalList li {
-		line-height: 38px;
-		padding:20px 0;
+		line-height: 29px;
+		padding:15px 0;
 	}
 	.minimalList img {
-		margin-right: 30px;
+		margin-right: 23px;
 		float: left;
 	}
 	.minimalList li>span {
@@ -278,11 +281,11 @@
 		font-size: 0.97em;
 		/*height:90px;*/
 		overflow: hidden;
-		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrownotpushed.png) no-repeat 90% 28px;
+		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrownotpushed.png) no-repeat 90% 22px;
 	}
 	.mission.active {
 		height: auto;
-		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrowpushed.png) no-repeat 90% 28px;
+		background: url(assets/Interface/menubartoggle.png) no-repeat, url(assets/Interface/togglearrowpushed.png) no-repeat 90% 22px;
 	}
 	.mission div, .minimalList div {
 		display:none;
@@ -290,28 +293,28 @@
 	h2 {
 		font-family: eurostile;
 		font-weight: normal;
-		line-height: 24px;
-		padding: 31px;
+		line-height: 18px;
+		padding: 24px;
 		margin: 0;
 	}
 	.mission h2 {
 		font-size:1.7em;
 	}
 	.mission p {
-		margin: 8px 20px;
+		margin: 6px 15px;
 	}
 	.mission ul {
 		list-style: square;
 		list-style-position: inside;
 		font-style: italic;
-		margin: 20px;
-		margin-right: 100px;
+		margin: 15px;
+		margin-right: 77px;
 		padding: 0;
 	}
 
 	#logisticsTab {
 		background: url(assets/logistics/logisticsplaceholder.png) no-repeat;
-		height: 700px;
+		height: 538px;
 	}
 
 
@@ -356,8 +359,8 @@
 	</div>
 </div>
 <header>
-<img src="assets/Interface/powerbutton.png">
-<img src="assets/Interface/settingsbutton.png">
+<img src="assets/Interface/powerbutton.png" height="30">
+<img src="assets/Interface/settingsbutton.png" height="30">
 <h1>Lunar Orbital Station</h1>
 <p id="topStatus">STATUS: <span>DAMAGED</span></p>
 
@@ -393,13 +396,13 @@
   	var setFuel = function(newValue) { // newValue is between 0 and 1
   		if (newValue <=1 && newValue >=0) {
   			var newValuePercent = Math.floor(newValue*100) + '%';
-  			var scaledValue = newValue*650;
+  			var scaledValue = newValue*500;
   			$('#fuelLabel').text(newValuePercent); //floor or round?
-  			if (scaledValue > (140-50)) $('#fuelLabel').css("left", scaledValue + 50)
-			else $('#fuelLabel').css("left", 140)
-  			$('#fuelbar img').css("left", scaledValue + 44)
-  			if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
-			else $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,100,100,0.6) " + (scaledValue+67) + ",rgba(255,150,150,0.2) " + (scaledValue+71) + ")"})
+  			if (scaledValue > (108-38)) $('#fuelLabel').css("left", scaledValue + 38)
+			else $('#fuelLabel').css("left", 108)
+  			$('#fuelbar img').css("left", scaledValue + 34)
+  			if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+51) + ",rgba(255,255,255,0.2) " + (scaledValue+55) + ")"})
+			else $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,100,100,0.6) " + (scaledValue+51) + ",rgba(255,150,150,0.2) " + (scaledValue+55) + ")"})
   		}
 
   	}
