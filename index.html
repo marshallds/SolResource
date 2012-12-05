@@ -177,15 +177,15 @@
 
 	#overlayMenu {
 		position: absolute;
-		top:-826px;
+		top:0px;
 		height: 992px;
 		width: 800px;
 		background:url(assets/Interface/midbackground.png) no-repeat;
 		-webkit-transition: all 1.2s ease;
-		-webkit-transform: translate3d(0,0,0);
+		-webkit-transform: translate3d(0,-826px,0);
 	}
 	#overlayMenu.active {
-		top:0;
+		-webkit-transform: translate3d(0,0px,0);
 	}
 	#overlayMenu>.active {
 		opacity:0.3;
