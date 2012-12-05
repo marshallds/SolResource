@@ -182,6 +182,7 @@
 		width: 800px;
 		background:url(assets/Interface/midbackground.png) no-repeat;
 		-webkit-transition: all 1.2s ease;
+		-webkit-transform: translate3d(0,0,0);
 	}
 	#overlayMenu.active {
 		top:0;
@@ -243,6 +244,7 @@
 		font-size: 1.6em;
 		opacity: 0;
 		-webkit-transition: all 0.4s ease;
+		-webkit-transform: translate3d(0,0,0);
 	}
 	#overlayMenu.active>.active {
 		opacity: 1.0;
@@ -274,10 +276,11 @@
 		font-weight: 300;
 		letter-spacing: 0;
 		line-height: 1.2;
+		-webkit-transform: translate3d(0,0,0);
 
 	}
 	.mission {
-		font-weight: 200;
+		/*font-weight: 200;*/
 		letter-spacing: 1px;
 		font-size: 0.97em;
 		/*height:90px;*/
@@ -318,9 +321,11 @@
 		height: 700px;
 		letter-spacing: 0;
 		font-weight: 200;
+		-webkit-transform-origin: 0 0;
 	}
 	.logisticsActive {
-		left:800px !important;
+		/*left:800px !important;*/
+		-webkit-transform: translate3d(800px,200px,0) scale3d(3.5,3.5,1) !important;
 	}
 	#sensorsButton {
 		position: absolute;
@@ -503,17 +508,6 @@
 <script src="js/jquery1.8.3.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-  	$('#overlayClickZone').click(function() {
-  		$('#overlayMenu').toggleClass('active')
-  	});
-  	$('#sensorsButton').click(function() {
-  		$(this).parent().toggleClass('logisticsActive')
-  		$('#sensorsTab').toggleClass('active')
-  	});
-  	$('#sensorsTab h2').click(function() {
-  		$(this).parent().toggleClass('active');
-  		$('#logisticsTab').toggleClass('logisticsActive')
-  	});
 
   	var setFuel = function(newValue) { // newValue is between 0 and 1
   		if (newValue <=1 && newValue >=0) {
@@ -523,7 +517,7 @@
   			if (scaledValue > (140-50)) $('#fuelLabel').css("left", scaledValue + 50)
 			else $('#fuelLabel').css("left", 140)
   			$('#fuelbar img').css("left", scaledValue + 44)
-  			if (newValue >0.15) $('#fuelbar').animate({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
+  			if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
 			else $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,100,100,0.6) " + (scaledValue+67) + ",rgba(255,150,150,0.2) " + (scaledValue+71) + ")"})
   		}
 
@@ -531,7 +525,21 @@
 
   	setFuel(0.82);
 
-  	$('#overlayMenu nav li').click(function() {
+  	var touchEvent = 'touchend';
+
+  	$('#overlayClickZone').bind(touchEvent,function() {
+  		$('#overlayMenu').toggleClass('active')
+  	});
+  	$('#sensorsButton').bind(touchEvent,function() {
+  		$(this).parent().toggleClass('logisticsActive')
+  		$('#sensorsTab').toggleClass('active')
+  	});
+  	$('#sensorsTab h2').bind(touchEvent,function() {
+  		$(this).parent().toggleClass('active');
+  		$('#logisticsTab').toggleClass('logisticsActive')
+  	});
+
+  	$('#overlayMenu nav li').bind(touchEvent,function() {
   		$('#overlayMenu li').removeClass('active');
   		$(this).addClass('active');
   		var targetTab = "#" + $(this).attr('rel');
@@ -542,7 +550,7 @@
   		$('#overlayMenu>.active').removeClass('active');
 		$(targetTab).addClass('active');
   	});
-  	$('.mission, .minimalList li').click(function() {
+  	$('.mission, .minimalList li').bind(touchEvent,function() {
   		$(this).toggleClass('active')
   		$(this).find('div').slideToggle();
   	});
