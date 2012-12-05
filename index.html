@@ -6,7 +6,7 @@
 	<style type="text/css">
 
 	@font-face {
-	  font-family: eurostile;
+	  font-family: euro;
 	  src: url(fonts/eurostile.ttf);
 	}  
 	body {
@@ -22,9 +22,9 @@
 		position: relative;
 		/*width:800px;*/
 		/*height: 1205px;*/
+		/*border:1px solid #888;*/
 		width: 100%;
 		height: 100%;
-		/*border:1px solid #888;*/
 		background: url(assets/Background/Background.png);
 		overflow: hidden;
 
@@ -64,7 +64,7 @@
 	}
 	#topStatus {
 		font-size: 1.4em;
-		font-family: eurostile;
+		font-family: euro;
 		opacity: 0.99;
 	}
 	#topStatus span {
@@ -83,7 +83,7 @@
 		background: url(assets/Interface/lowerbar.png) 0 30px no-repeat;
 	}
 	h3 {
-		font-family: Eurostile;
+		font-family: euro;
 		font-weight: normal;
 		margin: 0;
 		padding:0;
@@ -96,7 +96,7 @@
 	#fuelLabel {
 		position: absolute;
 		left:50%;
-		font-family: Eurostile;
+		font-family: euro;
 		font-size: 1.5em;
 	}
 	#fuelbar {
@@ -126,7 +126,7 @@
 		height: 1em;
 		padding:6px 80px 80px 3px;
 		font-size: 1.6em;
-		font-family: Eurostile;
+		font-family: euro;
 		text-align: center;
 	}
 	#fleetButton {
@@ -138,7 +138,7 @@
 		height: 1em;
 		padding:6px 9px 80px 80px;
 		font-size: 1.6em;
-		font-family: Eurostile;
+		font-family: euro;
 		text-align: center;
 	}
 	.resourceBar {
@@ -146,7 +146,7 @@
 		width: 150px;
 		top: 80px;
 		text-align: center;
-		font-family: Eurostile;
+		font-family: euro;
 		opacity: 0.99;
 	}
 	.resourceBar p {
@@ -168,6 +168,10 @@
 	.right {
 		float: right;
 		margin-left:1.5em;
+	}
+	.left {
+		float: left;
+		margin-right: 1.5em;
 	}
 
 
@@ -192,10 +196,11 @@
 		right:50px;
 		left: 50px;
 		bottom: -40px;
+		z-index: 20;
 	}
 	#overlayMenu nav {
 		margin: 138px 0 40px;
-		font-family: eurostile;
+		font-family: euro;
 		font-size: 1.4em;
 		overflow: hidden;
 	}
@@ -236,8 +241,6 @@
 		left:0;
 		right: 0;
 		font-size: 1.6em;
-		font-weight: 400;
-		letter-spacing: 3px;
 		opacity: 0;
 		-webkit-transition: all 0.4s ease;
 	}
@@ -250,6 +253,7 @@
 	.minimalList {
 		list-style: none;
 		padding: 0;
+		letter-spacing: 3px;
 	}
 	.minimalList li {
 		line-height: 38px;
@@ -288,7 +292,7 @@
 		display:none;
 	}
 	h2 {
-		font-family: eurostile;
+		font-family: euro;
 		font-weight: normal;
 		line-height: 24px;
 		padding: 31px;
@@ -312,14 +316,104 @@
 	#logisticsTab {
 		background: url(assets/logistics/logisticsplaceholder.png) no-repeat;
 		height: 700px;
+		letter-spacing: 0;
+		font-weight: 200;
+	}
+	.logisticsActive {
+		left:800px !important;
+	}
+	#sensorsButton {
+		position: absolute;
+		left:20px;
+		top:10px;
+		width:600px;
+		height: 100px;
+	}
+	#sensorsTab {
+		font-size: 1.2em;
+		font-weight: 200;
+	}
+	#sensorsTab h2 {
+		background: url(assets/logistics/sensorbar.png) no-repeat;
+		opacity: 0.99;
+		line-height: 40px;
+		padding:32px 50px;
+		margin: 0.5em 0 1.5em;
+	}
+	h2 span {
+		font-size: 0.7em;
+		padding-left: 1em;
+	}
+	#status {
+		line-height: 0.9;
+		padding-top:1em;
+	}
+	#status img {
+		float:left;
+		margin-right: 0.5em
+	}
+	.button {
+		float:right;
+		margin-left: 0.5em;
+		height: 79px;
+		width:412px;
+		line-height: 79px;
+		text-align: center;
+		background: url(assets/logistics/rundiagnostic.png) no-repeat;
+	}
+	.buttonnote {
+		font-size: 0.8em;
+		text-align: right;
+		padding-top: 0.8em;
+		opacity: 0.9;
+	}
+	#systemsDisplay {
+		height:202px;
+		background: url(assets/logistics/brackets.png) no-repeat;
+		margin: 1.5em 0;
+		opacity: 0.9;
+	}
+	#systemsDisplay p {
+		text-align: center;
+		line-height: 202px;
+	}
+	#scanbutton {
+		background: url(assets/logistics/scanbutton.png) no-repeat;
+		height: 179px;
+		font-size: 2.1em;
+	}
+	#scanbutton p {
+		padding: 0.25em 1em 0 0;
+	}
+	#scanbutton span {
+		display: block;
+		font-size: 0.5em;
+		font-family: euro;
+		margin-left:8px;
+		text-align: left;
+		text-shadow: 1px 1px 0px #000;
 	}
 
-
+	svg {
+		width:100%;
+		height:100%;
+	}
+	#rangering {
+		background:-webkit-radial-gradient(white, black);
+	}
+	#orbit {
+		  stroke: rgba(150,150,150,0.6);
+		  fill: none;
+		  stroke-width: 2;
+		  stroke-dasharray: 2,4;
+	}
 
 	</style>
 </head>
 <body>
 <div id="container">
+
+
 <div id="overlayMenu">
 	<div id="overlayClickZone"></div>
 	<nav>
@@ -351,8 +445,15 @@
 		</div>
 	</div>
 	<div id="logisticsTab">
-
-
+		<div id="sensorsButton"></div>
+	</div>
+	<div id="sensorsTab">
+		<h2>Sensors <span>Rating 1</span></h2>
+		<p class="button">run system diagnostic</p>
+		<p id="status"><img src="assets/logistics/greenbox.png">SYSTEM<br>status</p>
+		<div id="systemsDisplay"><p>all systems functional</p></div>
+		<div class="button" id="scanbutton"><p>SCAN<span>FUEL: 5%</span></p></div>
+		<p class="buttonnote">Use radar to scan the surrounding area for asteroids of note</p>
 	</div>
 </div>
 <header>
@@ -379,8 +480,24 @@
 <div class="resourceBar" style="left:550px"><p>10</p><h3>Platinum</h3></div>
 
 </footer>
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
 
+    <radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
+        <stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0.1"/>
+        <stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0.1"/>
+        <stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.3"/>
+        <stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.45"/>
+    </radialGradient>
+    <filter id = "i1" x = "0%" y = "0%" width = "100%" height = "100%">
+        <feImage xlink:href = "assets/earth.png"/>
+    </filter>
+	<circle cx="-400" cy="50%" r="800" id="orbit" />
+	<circle cx="50%" cy="50%" r="400" fill="url(#g1)" id="rangering" />
+	<circle cx="50%" cy="50%" r="17" fill="blue" filter="url(#i1)" id="earth" />
+
+</svg>
 </div>
+
 
 <script src="phonegap.js"></script>
 <script src="js/jquery1.8.3.min.js"></script>
@@ -388,6 +505,14 @@
   $(document).ready(function() {
   	$('#overlayClickZone').click(function() {
   		$('#overlayMenu').toggleClass('active')
+  	});
+  	$('#sensorsButton').click(function() {
+  		$(this).parent().toggleClass('logisticsActive')
+  		$('#sensorsTab').toggleClass('active')
+  	});
+  	$('#sensorsTab h2').click(function() {
+  		$(this).parent().toggleClass('active');
+  		$('#logisticsTab').toggleClass('logisticsActive')
   	});
 
   	var setFuel = function(newValue) { // newValue is between 0 and 1
@@ -398,7 +523,7 @@
   			if (scaledValue > (140-50)) $('#fuelLabel').css("left", scaledValue + 50)
 			else $('#fuelLabel').css("left", 140)
   			$('#fuelbar img').css("left", scaledValue + 44)
-  			if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
+  			if (newValue >0.15) $('#fuelbar').animate({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.6) " + (scaledValue+67) + ",rgba(255,255,255,0.2) " + (scaledValue+71) + ")"})
 			else $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,100,100,0.6) " + (scaledValue+67) + ",rgba(255,150,150,0.2) " + (scaledValue+71) + ")"})
   		}
 
