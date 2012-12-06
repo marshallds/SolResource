@@ -9,6 +9,10 @@
 	  font-family: euro;
 	  src: url(fonts/eurostile.ttf);
 	}  
+
+	audio {
+		display: none;
+	}
 	body {
 		background: #000;
 		margin:0;
@@ -20,11 +24,11 @@
 	}
 	#container {
 		position: relative;
-		/*width:800px;*/
-		/*height: 1205px;*/
-		/*border:1px solid #888;*/
-		width: 100%;
-		height: 100%;
+		width:800px;
+		height: 1205px;
+		border:1px solid #888;
+		/*width: 100%;*/
+		/*height: 100%;*/
 		background: url(assets/Background/Background.png);
 		overflow: hidden;
 
@@ -108,6 +112,7 @@
 		padding:16px 0;
 		/*background: url(assets/Interface/energybarbase.png) no-repeat;*/
 		background: -webkit-linear-gradient(left,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.3) 50%);
+		background: rgba(255,255,255,0.3);
 		background-clip: content-box !important; 
 		-webkit-mask: url(assets/Interface/lowerbarmask.png);
 	}
@@ -157,6 +162,22 @@
 		font-size: 1.5em;
 	}
 
+	#notification {
+		position: absolute;
+		display: none;
+		top:50%;
+		left:50%;
+		margin: -4.5em 0 0 -7.5em;
+		height:6em;
+		width:12em;
+		padding: 1.5em;
+		background: rgba(0,0,0,0.7);
+		border:1px solid rgba(255,255,255,0.3);
+		text-align: center;
+		font-size: 1.5em;
+		z-index: 99;
+		-webkit-transform: translate3d(0,0px,0);
+	}
 
 
 	.yellow {
@@ -343,7 +364,7 @@
 		opacity: 0.99;
 		line-height: 40px;
 		padding:32px 50px;
-		margin: 0.5em 0 1.5em;
+		margin: 0em 0 1em;
 	}
 	h2 span {
 		font-size: 0.7em;
@@ -357,35 +378,52 @@
 		float:left;
 		margin-right: 0.5em
 	}
+	#statusbox {
+		height:1.8em;
+		width:1.8em;
+		float:left;
+		margin-right: 0.2em;
+		background:#c58976; /*7cc576*/
+		opacity: 0.3;
+	}
 	.button {
 		float:right;
 		margin-left: 0.5em;
+		margin-right:9px;
 		height: 79px;
 		width:412px;
 		line-height: 79px;
 		text-align: center;
 		background: url(assets/logistics/rundiagnostic.png) no-repeat;
+		z-index: 1;
 	}
 	.buttonnote {
+		width:300px;
 		font-size: 0.8em;
 		text-align: right;
 		padding-top: 0.8em;
 		opacity: 0.9;
 	}
 	#systemsDisplay {
+		overflow: hidden;
 		height:202px;
 		background: url(assets/logistics/brackets.png) no-repeat;
-		margin: 1.5em 0;
+		margin: 1em 0 2em;
 		opacity: 0.9;
 	}
 	#systemsDisplay p {
 		text-align: center;
 		line-height: 202px;
+		margin-bottom:1em;
 	}
 	#scanbutton {
 		background: url(assets/logistics/scanbutton.png) no-repeat;
-		height: 179px;
+		height: 151px;
 		font-size: 2.1em;
+	}
+	#scanbutton:active {
+		/*background: url(assets/logistics/scanbuttonpress.png) no-repeat;*/
+		box-shadow: 0 0 18px #fff;
 	}
 	#scanbutton p {
 		padding: 0.25em 1em 0 0;
@@ -404,7 +442,7 @@
 		height:100%;
 	}
 	#rangering {
-		background:-webkit-radial-gradient(white, black);
+		scale:0;
 	}
 	#orbit {
 		  stroke: rgba(150,150,150,0.6);
@@ -416,6 +454,7 @@
 	</style>
 </head>
 <body>
+	<audio id="buttonsound"><source src="assets/Sounds/menuclick.mp3"></source></audio>
 <div id="container">
 
 
@@ -454,9 +493,9 @@
 	</div>
 	<div id="sensorsTab">
 		<h2>Sensors <span>Rating 1</span></h2>
-		<p class="button">run system diagnostic</p>
-		<p id="status"><img src="assets/logistics/greenbox.png">SYSTEM<br>status</p>
-		<div id="systemsDisplay"><p>all systems functional</p></div>
+		<p class="button" id="runsysdiag">run system diagnostic</p>
+		<p id="status"><span id="statusbox"></span>SYSTEM<br>status</p>
+		<div id="systemsDisplay"><p>system status unknown</p></div>
 		<div class="button" id="scanbutton"><p>SCAN<span>FUEL: 5%</span></p></div>
 		<p class="buttonnote">Use radar to scan the surrounding area for asteroids of note</p>
 	</div>
@@ -485,27 +524,61 @@
 <div class="resourceBar" style="left:550px"><p>10</p><h3>Platinum</h3></div>
 
 </footer>
-<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+
+<div id="notification">Hi.</div>
+
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" viewBox="0 0 800 1205">
+
+    <radialGradient id = "blipPulse" cx = "50%" cy = "50%" r = "50%">
+
+        <stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "0.2">
+	    	<animate attributeName="stop-opacity" begin="0s" dur="3s" values="1;0;1" repeatCount="indefinite" />
+        </stop>
+        <stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "1">
+	    	<animate attributeName="offset" begin="0s" dur="3s" values="0;1;1;0" repeatCount="indefinite" />
+	    	<animate attributeName="stop-opacity" begin="0s" dur="3s" values="0;1;0;0" repeatCount="indefinite" />
+	    </stop>
+
+        <stop stop-color = "#3ddeed" offset = "2" stop-opacity = "0">
+    </radialGradient>
+	<defs>
+		<g id="blip">
+	    <circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3"/>
+	    <circle cx = "0" cy = "0" r = "7" fill = "#3ddeed" stroke = "none" stroke-width = "0"/>
+		</g>
+	</defs>
 
     <radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
-        <stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0.1"/>
-        <stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0.1"/>
-        <stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.3"/>
-        <stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.45"/>
+        <stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0"/>
+        <stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0"/>
+        <stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.1"/>
+        <stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.25"/>
     </radialGradient>
     <filter id = "i1" x = "0%" y = "0%" width = "100%" height = "100%">
         <feImage xlink:href = "assets/earth.png"/>
     </filter>
-	<circle cx="-400" cy="50%" r="800" id="orbit" />
-	<circle cx="50%" cy="50%" r="400" fill="url(#g1)" id="rangering" />
-	<circle cx="50%" cy="50%" r="17" fill="blue" filter="url(#i1)" id="earth" />
 
+    <g id="mapcenter" transform="translate(400,600)">
+    <g id="map" transform="scale(1) translate(0,0)">
+	<circle cx="-800" cy="0" r="800" id="orbit" />
+	<circle id="rangering" cx="0" cy="0" r="400" fill="url(#g1)" transform="scale(0)" />
+	<g id="blips">
+		<use id="loc0" x = "100" y = "150" xlink:href = "#blip" opacity="0" />
+		<use id="loc1" x = "-180" y = "110" xlink:href = "#blip" opacity="0" />
+		<use id="loc2" x = "230" y = "-70" xlink:href = "#blip" opacity="0" />
+	</g>
+	<circle cx="0" cy="0" r="17" fill="blue" filter="url(#i1)" id="earth" />
+</g>
 </svg>
+
 </div>
 
 
 <script src="phonegap.js"></script>
 <script src="js/jquery1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.svg.min.js"></script>
+<script type="text/javascript" src="js/jquery.svgdom.min.js"></script>
+<script type="text/javascript" src="js/jquery.svganim.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
 
@@ -522,24 +595,58 @@
   		}
 
   	}
+  	var formatTime = function(seconds) {
+  		return Math.floor(seconds/60) + ':' + ('0'+ (seconds % 60)).slice(-2);
+  	}
+  	var countdown = function(time,target,callback){
+  	  var countdownloop = setInterval(function(){
+  	    $(target).html(formatTime(time));
+  	    if (time <= 0) {
+  	      callback();
+  	    }
+  	    time--;
+  	  }, 1000);
+  	};
 
   	setFuel(0.82);
 
-  	var touchEvent = 'touchend';
+  	var touchEvent = 'touchend'; // touchend click
+
+  	var scanTime = 3000;
+  	var sysDiagTime = 5; //seconds
+
+  	$('#scanbutton').on(touchEvent,function() {
+  		$('#logisticsTab').toggleClass('logisticsActive')
+  		$('#sensorsTab').toggleClass('active')
+  		$('#overlayMenu').toggleClass('active')
+  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
+  		// $('#rangering use').animate({'opacity':1})
+  		$('#blips use').each(function() {
+  			var distance = Math.sqrt(Math.pow($(this).attr('x'),2) + Math.pow($(this).attr('y'),2));
+  			$(this).delay(distance/400*scanTime).animate({'opacity':1},200)
+  			$(this).on(touchEvent,function() {
+  				$('#map').animate({svgTransform:'scale(20) translate(' + -$(this).attr('x') + ',' + -$(this).attr('y') + ')'},5000,'easeout')
+
+  			})
+  		})
+  	});
 
   	$('#overlayClickZone').bind(touchEvent,function() {
   		$('#overlayMenu').toggleClass('active')
   	});
   	$('#sensorsButton').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
   		$(this).parent().toggleClass('logisticsActive')
   		$('#sensorsTab').toggleClass('active')
   	});
   	$('#sensorsTab h2').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
   		$(this).parent().toggleClass('active');
   		$('#logisticsTab').toggleClass('logisticsActive')
   	});
 
   	$('#overlayMenu nav li').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
   		$('#overlayMenu li').removeClass('active');
   		$(this).addClass('active');
   		var targetTab = "#" + $(this).attr('rel');
@@ -551,12 +658,31 @@
 		$(targetTab).addClass('active');
   	});
   	$('.mission, .minimalList li').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
   		$(this).toggleClass('active')
   		$(this).find('div').slideToggle();
   	});
-
+  	$('#runsysdiag').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
+  		$('#systemsDisplay p').html('system diagnostic in progress. <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
+  		countdown(sysDiagTime-1,'#sysdiagcountdown',function() {
+  			$('#systemsDisplay p').html('system failure detected')
+  		})
+  	});
+  	$('#missionsbutton,#fleetbutton,#notification').bind(touchEvent,function() {
+  		document.getElementById('buttonsound').play()
+  		$('#notification').fadeToggle()
+  	});
 
   });
 </script>
+<!-- 
+system status init as red, system status unknown
+click run system diagnostic
+system diagnostic in progress. 0:05 remaining
+5 seconds
+display repair button
+all systems functional
+ -->
 </body>
 </html>
