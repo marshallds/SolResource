@@ -436,6 +436,58 @@
 		text-align: left;
 		text-shadow: 1px 1px 0px #000;
 	}
+	#repairbutton {
+		display:none;
+		position: relative;
+		width: 697px;
+		height: 179px;
+		background: url(assets/logistics/repairbutton.png) no-repeat;
+		margin: 13px 9px;
+	}
+	#repairbutton:active {
+		box-shadow: 0 0 18px #fff;
+	}
+	#repairbutton p {
+		position: absolute;
+		text-align: left;
+		line-height: 1em;
+	}
+	p#repairbuttontitle {
+		left:115px;
+		top:62px;
+		font-size: 2.1em;
+
+	}
+	p#repairrequiredtime {
+		text-align: right;
+		top:14px;
+		right:70px;
+		font-family: euro;
+	}
+	p#repairnote {
+		font-style: italic;
+		font-size: 0.7em;
+		width:175px;
+		top:72px;
+		left:312px;
+	}
+	p#repairrequiredresourceslabels {
+		text-align: right;
+		right:70px;
+		top:72px;
+		width:140px;
+		font-family: euro;
+		text-shadow: 1px 1px 0px #000;
+	}
+	p#repairrequiredresourcesvalues {
+		text-align: right;
+		right:25px;
+		top:72px;
+		width:40px;
+		font-family: euro;
+		text-shadow: 1px 1px 0px #000;
+
+	}
 
 	svg {
 		width:100%;
@@ -495,7 +547,8 @@
 		<h2>Sensors <span>Rating 1</span></h2>
 		<p class="button" id="runsysdiag">run system diagnostic</p>
 		<p id="status"><span id="statusbox"></span>SYSTEM<br>status</p>
-		<div id="systemsDisplay"><p>system status unknown</p></div>
+		<div id="systemsDisplay"><p>system status unknown</p>
+			<div id="repairbutton"><p id="repairbuttontitle">REPAIR</p><p id="repairnote">use resources to perform upkeep repairs before critical systems fail</p><p id="repairrequiredresourceslabels">IRON<br>PLATINUM<br>HYDROGEN</p><p id="repairrequiredresourcesvalues">40<br>25<br>80</p><p id="repairrequiredtime">2:00</p></div></div>
 		<div class="button" id="scanbutton"><p>SCAN<span>FUEL: 5%</span></p></div>
 		<p class="buttonnote">Use radar to scan the surrounding area for asteroids of note</p>
 	</div>
@@ -664,9 +717,10 @@
   	});
   	$('#runsysdiag').bind(touchEvent,function() {
   		document.getElementById('buttonsound').play()
-  		$('#systemsDisplay p').html('system diagnostic in progress. <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
+  		$('#systemsDisplay>p').html('system diagnostic in progress... <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
   		countdown(sysDiagTime-1,'#sysdiagcountdown',function() {
-  			$('#systemsDisplay p').html('system failure detected')
+  			$('#systemsDisplay>p').hide()
+  			$('#repairbutton').show()
   		})
   	});
   	$('#missionsbutton,#fleetbutton,#notification').bind(touchEvent,function() {
