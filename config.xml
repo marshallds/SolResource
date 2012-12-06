@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.newlinegaming.solresource"
+        id        = "com.NewlineGaming.SolResource"
         version   = "0.1.2">
     <name>Sol Resource</name>
 
@@ -18,7 +18,8 @@
     <preference name="phonegap-version" value="2.1.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="tablet" />
-    <preference name="fullscreen"       value="true " />
+    <preference name="fullscreen"       value="true" />
+	<preference name="permissions"		value="none" />
 
     <icon src="icon.png" />
 
