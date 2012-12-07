@@ -20,6 +20,7 @@
     <preference name="target-device"    value="tablet" />
     <preference name="fullscreen"       value="true" />
 	<preference name="permissions"		value="none" />
+	<preference name="android-minSdkVersion" value="16" />
 
     <icon src="icon.png" />
 
