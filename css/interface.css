@@ -1,0 +1,193 @@
+	@font-face {
+	  font-family: euro;
+	  src: url(../fonts/eurostile.ttf);
+	}  
+
+	audio {
+		display: none;
+	}
+	body {
+		background: #000;
+		margin:0;
+		padding: 0;
+	}
+	p {
+		margin:0;
+		padding: 0;
+	}
+	#container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: url(../assets/Background/Background.png);
+		overflow: hidden;
+
+		color:#fff;
+		font-family:  'Source Sans Pro', sans-serif;
+		font-size: 16px;
+
+	}
+	@media screen and (min-width:900px) {
+		body {
+		width:800px;
+		height: 1205px;
+		border:1px solid #888;
+	}
+	}
+	header {
+		position: absolute;
+		right:0;
+		left:0;
+		height:104px;
+		margin:0;
+		padding:10px 30px;
+		background:url(../assets/Interface/topbumpers.png) 0 130px no-repeat,url(../assets/Interface/topbaralert.png) no-repeat, url(../assets/Interface/topbar.png) no-repeat;
+	}
+	#bumperleft, #bumperright {
+		position: absolute;
+		top:130px;
+		height: 50px;
+		width: 100px;
+		background:url(../assets/Interface/topbumpers.png) no-repeat;
+	}
+	#bumperleft {
+		left:0;
+	}
+	#bumperright {
+		right: 0;
+		background:url(../assets/Interface/topbumpers.png) no-repeat right;
+	}
+	h1 {
+		font-weight: 200;
+		font-size: 3em;
+		margin: 0;
+		padding:0;
+	}
+	#topStatus {
+		font-size: 1.4em;
+		font-family: euro;
+		opacity: 0.99;
+	}
+	#topStatus span {
+		font-weight: bold;
+	}
+	header img {
+		float:right;
+		margin: 10px 24px;
+	}
+	footer {
+		position: absolute;
+		bottom: 0;
+		left:0;
+		right: 0;
+		height:200px;
+		background: url(../assets/Interface/lowerbar.png) 0 30px no-repeat;
+	}
+	h3 {
+		font-family: euro;
+		font-weight: normal;
+		margin: 0;
+		padding:0;
+	}
+	footer>h3 {
+		position: absolute;
+		left:80px;
+		font-size: 1.5em;
+	}
+	#fuelLabel {
+		position: absolute;
+		left:50%;
+		font-family: euro;
+		font-size: 1.5em;
+	}
+	#fuelbar {
+		position: absolute;
+		top:30px;
+		left:0px;
+		right:0px;
+		height:7px;
+		padding:16px 0;
+		/*background: url(../assets/Interface/energybarbase.png) no-repeat;*/
+		background: -webkit-linear-gradient(left,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.3) 50%);
+		background: rgba(255,255,255,0.3);
+		background-clip: content-box !important; 
+		-webkit-mask: url(../assets/Interface/lowerbarmask.png);
+	}
+
+	#fuelbar img {
+		position:absolute;
+		left:49%;
+		top:10px;
+	}
+	#missionsButton {
+		position: absolute;
+		background:url(../assets/Interface/missionsbutton.png) top left no-repeat;
+		top:55px;
+		left:10px;
+		width:1.2em;
+		height: 1em;
+		padding:4px 80px 80px 3px;
+		font-size: 1.6em;
+		font-family: euro;
+		text-align: center;
+	}
+	#fleetButton {
+		position: absolute;
+		background: url(../assets/Interface/fleetbutton.png) top right no-repeat;
+		right:10px;
+		top:55px;
+		width:1.2em;
+		height: 1em;
+		padding:4px 9px 80px 80px;
+		font-size: 1.6em;
+		font-family: euro;
+		text-align: center;
+	}
+	.resourceBar {
+		position: absolute;
+		width: 150px;
+		top: 80px;
+		text-align: center;
+		font-family: euro;
+		opacity: 0.99;
+	}
+	.resourceBar p {
+		font-size: 2.4em;
+		padding:22px;
+	}
+	.resourceBar h3 {
+		font-size: 1.5em;
+	}
+
+	#notification {
+		position: absolute;
+		display: none;
+		top:50%;
+		left:50%;
+		margin: -4.5em 0 0 -7.5em;
+		height:6em;
+		width:12em;
+		padding: 1.5em;
+		background: rgba(0,0,0,0.7);
+		border:1px solid rgba(255,255,255,0.3);
+		text-align: center;
+		font-size: 1.5em;
+		z-index: 99;
+		-webkit-transform: translate3d(0,0px,0);
+	}
+
+
+	.yellow {
+		color:#fb0;
+	}
+	.blue {
+		color: #6ce;
+	}
+	.right {
+		float: right;
+		margin-left:1.5em;
+	}
+	.left {
+		float: left;
+		margin-right: 1.5em;
+	}
