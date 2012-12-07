@@ -203,6 +203,10 @@
 		position: absolute;
 		z-index: 100;
 	}
+	#intro video {
+		width: 800px;
+		min-height: 1200px;
+	}
 
 
 	.yellow {
