@@ -26,5 +26,5 @@ var countdown = function(time,target,callback){
 };
 
 var getSensorStatus = function() {
-	return true;
+	return false;
 }
