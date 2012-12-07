@@ -24,9 +24,6 @@
 	}
 	#container {
 		position: relative;
-		/*width:800px;*/
-		/*height: 1205px;*/
-		/*border:1px solid #888;*/
 		width: 100%;
 		height: 100%;
 		background: url(assets/Background/Background.png);
@@ -36,6 +33,13 @@
 		font-family:  'Source Sans Pro', sans-serif;
 		font-size: 16px;
 
+	}
+	@media screen and (min-width:900px) {
+		body {
+		width:800px;
+		height: 1205px;
+		border:1px solid #888;
+	}
 	}
 	header {
 		position: absolute;
@@ -201,6 +205,7 @@
 		top:0px;
 		height: 992px;
 		width: 800px;
+		overflow: hidden;
 		background:url(assets/Interface/midbackground.png) no-repeat;
 		-webkit-transition: all 1.2s ease;
 		-webkit-transform: translate3d(0,-826px,0);
@@ -258,11 +263,13 @@
 		background: url(assets/Interface/logisticsbuttonselected.png);
 	}
 	#overlayMenu>div {
-		position: absolute;
 		padding:5px 38px;
+		font-size: 1.6em;
+	}
+	#overlayMenu>div,#logisticsTab>div {
+		position: absolute;
 		left:0;
 		right: 0;
-		font-size: 1.6em;
 		opacity: 0;
 		-webkit-transition: all 0.4s ease;
 		-webkit-transform: translate3d(0,0,0);
@@ -272,7 +279,7 @@
 		z-index: 10;
 
 	}
-
+/*home tab*/
 	.minimalList {
 		list-style: none;
 		padding: 0;
@@ -300,6 +307,7 @@
 		-webkit-transform: translate3d(0,0,0);
 
 	}
+/*missions tab*/
 	.mission {
 		/*font-weight: 200;*/
 		letter-spacing: 1px;
@@ -338,11 +346,22 @@
 	}
 
 	#logisticsTab {
+/*		background: url(assets/logistics/logisticsplaceholder.png) no-repeat;
+		height: 700px;
+		letter-spacing: 0;
+		font-weight: 200;*/
+		-webkit-transform-origin: 0 0;
+	}
+	div#logisticsTabMain {
 		background: url(assets/logistics/logisticsplaceholder.png) no-repeat;
+		left:0;
+		right: 0;
 		height: 700px;
 		letter-spacing: 0;
 		font-weight: 200;
+		opacity: 1;
 		-webkit-transform-origin: 0 0;
+		-webkit-transition: all 0.6s ease;
 	}
 	.logisticsActive {
 		/*left:800px !important;*/
@@ -356,15 +375,18 @@
 		height: 100px;
 	}
 	#sensorsTab {
-		font-size: 1.2em;
+		padding: 5px 38px;
+		font-size: 1em;
 		font-weight: 200;
+	}
+	#logisticsTab>div.active {
+		opacity: 1;
 	}
 	#sensorsTab h2 {
 		background: url(assets/logistics/sensorbar.png) no-repeat;
-		opacity: 0.99;
 		line-height: 40px;
 		padding:32px 50px;
-		margin: 0em 0 1em;
+		margin: 0 0 50px;
 	}
 	h2 span {
 		font-size: 0.7em;
@@ -372,11 +394,7 @@
 	}
 	#status {
 		line-height: 0.9;
-		padding-top:1em;
-	}
-	#status img {
-		float:left;
-		margin-right: 0.5em
+		padding-top:0.7em;
 	}
 	#statusbox {
 		height:1.8em;
@@ -402,19 +420,17 @@
 		font-size: 0.8em;
 		text-align: right;
 		padding-top: 0.8em;
-		opacity: 0.9;
 	}
 	#systemsDisplay {
 		overflow: hidden;
 		height:202px;
 		background: url(assets/logistics/brackets.png) no-repeat;
-		margin: 1em 0 2em;
-		opacity: 0.9;
+		margin: 20px 0 50px;
 	}
 	#systemsDisplay p {
 		text-align: center;
 		line-height: 202px;
-		margin-bottom:1em;
+		/*margin-bottom:1em;*/
 	}
 	#scanbutton {
 		background: url(assets/logistics/scanbutton.png) no-repeat;
@@ -470,6 +486,7 @@
 		width:175px;
 		top:72px;
 		left:312px;
+		font-weight: 300;
 	}
 	p#repairrequiredresourceslabels {
 		text-align: right;
@@ -541,16 +558,27 @@
 		</div>
 	</div>
 	<div id="logisticsTab">
-		<div id="sensorsButton"></div>
-	</div>
-	<div id="sensorsTab">
-		<h2>Sensors <span>Rating 1</span></h2>
-		<p class="button" id="runsysdiag">run system diagnostic</p>
-		<p id="status"><span id="statusbox"></span>SYSTEM<br>status</p>
-		<div id="systemsDisplay"><p>system status unknown</p>
-			<div id="repairbutton"><p id="repairbuttontitle">REPAIR</p><p id="repairnote">use resources to perform upkeep repairs before critical systems fail</p><p id="repairrequiredresourceslabels">IRON<br>PLATINUM<br>HYDROGEN</p><p id="repairrequiredresourcesvalues">40<br>25<br>80</p><p id="repairrequiredtime">2:00</p></div></div>
-		<div class="button" id="scanbutton"><p>SCAN<span>FUEL: 5%</span></p></div>
-		<p class="buttonnote">Use radar to scan the surrounding area for asteroids of note</p>
+		<div id="logisticsTabMain">
+			<div id="sensorsButton"></div>
+		</div>
+		<div id="sensorsTab">
+			<h2>Sensors <span>Rating 1</span></h2>
+			<p class="button" id="runsysdiag">run system diagnostic</p>
+			<p id="status"><span id="statusbox"></span>SYSTEM<br>status</p>
+			<div id="systemsDisplay">
+				<p>system status unknown</p>
+				<div id="repairbutton">
+					<p id="repairbuttontitle">REPAIR</p>
+					<p id="repairnote">use resources to perform upkeep repairs before critical systems fail</p>
+					<p id="repairrequiredresourceslabels">IRON<br>PLATINUM<br>HYDROGEN</p>
+					<p id="repairrequiredresourcesvalues">40<br>25<br>80</p>
+					<p id="repairrequiredtime">2:00</p>
+				</div>
+			</div>
+			<div class="button" id="scanbutton"><p>SCAN<span>FUEL: 5%</span></p></div>
+			<p class="buttonnote">Use radar to scan the surrounding area for asteroids of note</p>
+		</div>
+		
 	</div>
 </div>
 <header>
@@ -695,7 +723,7 @@
   	$('#sensorsTab h2').bind(touchEvent,function() {
   		document.getElementById('buttonsound').play()
   		$(this).parent().toggleClass('active');
-  		$('#logisticsTab').toggleClass('logisticsActive')
+  		$('#logisticsTabMain').toggleClass('logisticsActive')
   	});
 
   	$('#overlayMenu nav li').bind(touchEvent,function() {
