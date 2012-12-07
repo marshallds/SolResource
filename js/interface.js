@@ -1,3 +1,6 @@
+function is_touch_device() {
+  return !!('ontouchstart' in window);
+}
 
 var setFuel = function(newValue) { // newValue is between 0 and 1
 	if (newValue <=1 && newValue >=0) {
