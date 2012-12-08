@@ -2,6 +2,12 @@ function is_touch_device() {
   return !!('ontouchstart' in window);
 }
 
+var touchEvent = 'click';
+if (is_touch_device())
+  {
+    touchEvent = 'touchend';
+  }
+
 var setFuel = function(newValue) { // newValue is between 0 and 1
 	if (newValue <=1 && newValue >=0) {
 		var newValuePercent = Math.floor(newValue*100) + '%';
@@ -30,4 +36,28 @@ var countdown = function(time,target,callback){
 
 var getSensorStatus = function() {
 	return false;
+}
+var updateResources = function(H2O,Fe,Pt) {
+	$('#h2ohex .hexValue').text(H2O);
+	$('#fehex .hexValue').text(Fe);
+	$('#pthex .hexValue').text(Pt);
+}
+var retrieveResources = function() {
+	updateResources(40,10,8)
+	setFuel(.78)
+	return true;
+}
+
+var gatherResourcesAnimation = function(duration) {
+	$('#clockmask rect').animate({svgY:-50},duration*1000,'linear',function() {
+		// console.log('animation done')
+		$('#resourcesAvailable').animate({svgOpacity:1},200)
+		$('#resourcesReady').on(touchEvent, function() {
+			// console.log('reset')
+			retrieveResources();
+			$('#resourcesAvailable').animate({svgOpacity:0},0)
+			$('#clockmask rect').animate({svgY:50},0,'linear',function(){})
+			gatherResourcesAnimation(duration);
+		})
+	})
 }
