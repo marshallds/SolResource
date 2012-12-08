@@ -130,9 +130,118 @@
 
 <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" viewBox="0 0 800 1205">
 
+	<defs>
+		<radialGradient id = "blipPulse" cx = "50%" cy = "50%" r = "50%">
 
-			<circle cx="0" cy="0" r="800" id="orbit" />
+			<stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "0.2">
+				<animate attributeName="stop-opacity" begin="0s" dur="3s" values="1;0;1" repeatCount="indefinite" />
+			</stop>
+			<stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "1">
+				<animate attributeName="offset" begin="0s" dur="3s" values="0;1;1;0" repeatCount="indefinite" />
+				<animate attributeName="stop-opacity" begin="0s" dur="3s" values="0;1;0;0" repeatCount="indefinite" />
+			</stop>
 
+			<stop stop-color = "#3ddeed" offset = "2" stop-opacity = "0" />
+		</radialGradient>
+		<radialGradient id = "resourcePulse" cx = "50%" cy = "50%" r = "50%">
+			<stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "1" />
+			<stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0" />
+		</radialGradient>
+		<g id="blip">
+			<circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3"/>
+			<circle cx = "0" cy = "0" r = "7" fill = "#3ddeed" stroke = "none" stroke-width = "0"/>
+		</g>
+		<path id="hex" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60" fill="rgba(255,255,255,0.15)" />
+
+		<radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
+			<stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0"/>
+			<stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0"/>
+			<stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.1"/>
+			<stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.25"/>
+		</radialGradient>
+
+		<filter id = "fearth" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/earth.png"/>
+		</filter>
+		<filter id = "fasteroid1" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/ice1.png"/>
+		</filter>
+		<filter id = "fasteroid2" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/ice2.png"/>
+		</filter>
+		<filter id = "fasteroid3" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/iron1.png"/>
+		</filter>
+		<filter id = "fasteroid4" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/iron2.png"/>
+		</filter>
+		<filter id = "ffleetcolor" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/fleeticoncolor.png"/>
+		</filter>
+		<filter id = "ffleetgray" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/fleeticongray.png"/>
+		</filter>
+		<filter id = "fdeployarrow" x = "0%" y = "0%" width = "100%" height = "100%">
+			<feImage xlink:href = "assets/Asteroids/deployarrow.png"/>
+		</filter>
+	</defs>
+
+	<g id="mapcenter" transform="translate(400,600)">
+		<g id="map" transform="scale(1) translate(0,0)">
+			<circle cx="-800" cy="0" r="800" id="orbit" />
+			<circle id="rangering" cx="0" cy="0" r="400" fill="url(#g1)" transform="scale(0)" />
+			<g id="blips">
+				<use id="loc0" x = "100" y = "150" xlink:href = "#blip" opacity="0" />
+				<use id="loc1" x = "-180" y = "110" xlink:href = "#blip" opacity="0" />
+				<use id="loc2" x = "230" y = "-70" xlink:href = "#blip" opacity="0" />
+			</g>
+			<circle cx="0" cy="0" r="17" fill="blue" filter="url(#fearth)" id="earth" />
+			<g id="asteroidfield" x="100" y="150" transform="translate(100,150) scale(0.05)" opacity="0">
+				<circle cx="48" cy="-146" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
+				<circle cx="-120" cy="-230" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
+				<circle cx="190" cy="90" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
+				<circle cx="-277" cy="270" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+			</g>
+
+
+
+		</g>
+		<g id="asteroidinfo" opacity="0" transform="translate(0,1000)">
+			<image id="deployarrow" xlink:href="assets/Asteroids/deployarrow.png" x="-30" y="-105" width="60" height="45" />
+			<circle cx="0" cy="-125" r="45" fill="blue" filter="url(#ffleetcolor)" id="fleetcolor" opacity="1" />
+			<circle id="resourcesAvailable" cx="0" cy="-0" r="40" fill="url(#blipPulse)" opacity="0"><animate attributeName="r" begin="0s" dur="3s" values="40;45;40" repeatCount="indefinite" /></circle>
+			<circle cx="0" cy="0" r="45" fill="blue" filter="url(#ffleetgray)" id="fleetgray" />
+
+			<clipPath id="clockmask">
+				<!-- <path d="M 0 45 A 150,150 0 0,0 -150,150" /> -->
+				<rect x="-50" y="50" width="100" height="100" />
+			</clipPath>
+			<!-- <path d="M 0,0 L 0 -45 A 150,150 0 0,0 -150,150" fill="white" stroke-color="red" stroke="2"/> -->
+
+			<image id="resourceplus" xlink:href="assets/Asteroids/resourceplus.png" x="-21" y="-25" height="49px" width="43px" opacity="0">
+				<animate attributeName="opacity" begin="0s" dur="2s" values="0;1;0" begin="indefinite" repeatCount="1" />
+				<animate attributeName="y" begin="0s" dur="2s" values="-25;-120" begin="indefinite" repeatCount="1" />
+			</image>
+			
+			<circle id="resourcesReady" clip-path="url(#clockmask)" cx="0" cy="-0" r="45" fill="blue" filter="url(#ffleetcolor)" />
+
+			<g id="h2ohex" transform="translate(108,-125)">
+				<use id="h2ohex" xlink:href = "#hex" opacity="1" />
+				<text x = "0" y = "0" class="hexValue">60</text>
+				<text x = "0" y = "30"  class="hexLabel">H<tspan baseline-shift = "sub" font-size="0.7em">2</tspan>O</text>
+			</g>
+			<g id="fehex" transform="translate(180,0)">
+				<use xlink:href = "#hex" opacity="1" />
+				<text x = "0" y = "0" class="hexValue">50</text>
+				<text x = "0" y = "30"  class="hexLabel">Fe</text>
+			</g>
+			<g id="pthex" transform="translate(108,125)">
+				<use xlink:href = "#hex" opacity="1" />
+				<text x = "0" y = "0" class="hexValue">10</text>
+				<text x = "0" y = "30"  class="hexLabel">Pt</text>
+			</g>
+		</g>
+	</g>
 </svg>
 
 </div>
@@ -182,8 +291,8 @@
 // }, false);
   	$('#fleetcolor').on(touchEvent, function() {
   		$('#fleetcolor, #deployarrow').animate({svgOpacity:0},600,'swing',function() {
-  			gatherResourcesAnimation(5);
   		})
+		gatherResourcesAnimation(5);
   	})
 
   	$('#intro video').on('ended pause',function() {

@@ -50,13 +50,12 @@ var retrieveResources = function() {
 
 var gatherResourcesAnimation = function(duration) {
 	$('#clockmask rect').animate({svgY:-50},duration*1000,'linear',function() {
-		// console.log('animation done')
 		$('#resourcesAvailable').animate({svgOpacity:1},200)
-		$('#resourcesReady').on(touchEvent, function() {
-			// console.log('reset')
+		$('#resourcesReady').bind(touchEvent, function() {
 			retrieveResources();
 			$('#resourcesAvailable').animate({svgOpacity:0},0)
 			$('#clockmask rect').animate({svgY:50},0,'linear',function(){})
+			$(this).unbind()
 			gatherResourcesAnimation(duration);
 		})
 	})
