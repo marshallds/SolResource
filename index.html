@@ -201,6 +201,12 @@
 		<rect x="-30" y="-105" width="60" height="45" fill="red" filter="url(#fdeployarrow)" id="deployarrow" />
 		<circle cx="0" cy="-125" r="45" fill="blue" filter="url(#ffleetcolor)" id="fleetcolor" />
 		<circle cx="0" cy="0" r="45" fill="blue" filter="url(#ffleetgray)" id="fleetgray" />
+
+		<clipPath id="hex-mask">
+      <path d="M 0 45 A 150,150 0 0,0 -150,150" />
+   </clipPath>
+		<circle clip-path="url(#hex-mask)" cx="0" cy="-0" r="45" fill="blue" filter="url(#ffleetcolor)" id="fleetcolor" />
+      <!-- <path d="M 0,0 L 0 -45 A 150,150 0 0,0 -150,150" fill="white" stroke-color="red" stroke="2"/> -->
 		<g id="h2ohex" transform="translate(108,-125)">
 			<use id="h2ohex" xlink:href = "#hex" opacity="1" />
 			<text x = "0" y = "0" class="hexValue">60</text>
@@ -246,8 +252,6 @@
   	var sysDiagTime = 5; //seconds
 
   	$('#scanbutton').on(touchEvent,function() {
-  		$('#logisticsTab').toggleClass('logisticsActive')
-  		$('#sensorsTab').toggleClass('active')
   		$('#overlayMenu').toggleClass('active')
   		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
   		// $('#rangering use').animate({'opacity':1})
@@ -263,6 +267,16 @@
   	})
   	$('#asteroidfield circle').on(touchEvent, function() {
   		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing')
+  	})
+//   	document.addEventListener("touchstart", function(e){
+// 	    $('h1').html(e.touches[0].pageY);
+
+//     e.preventDefault();//Stops the default behavior
+// }, false);
+  	$('#fleetcolor').on('touchstart', function(e) {
+  		e.preventDefault()
+  		console.log(e)
+  		$('h1').html(e.touches[0].pageY);
   	})
 
   	$('#intro video').on('ended pause',function() {
@@ -302,6 +316,8 @@
   	$('#runsysdiag').bind(touchEvent,function() {
   		document.getElementById('buttonsound').play()
 
+		$('#systemsDisplay>p').show()
+		$('#repairbutton').hide()
   		$('#systemsDisplay>p').html('system diagnostic in progress... <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
   		countdown(sysDiagTime-1,'#sysdiagcountdown',function() {
   			if(getSensorStatus()) {
