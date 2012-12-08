@@ -206,7 +206,7 @@
 
 
 		</g>
-		<g id="asteroidinfo" opacity="0" transform="translate(0,1000)">
+		<g id="asteroidinfo" opacity="1" transform="translate(0,00)">
 			<rect x="-30" y="-105" width="60" height="45" fill="red" filter="url(#fdeployarrow)" id="deployarrow" opacity="1" />
 			<circle cx="0" cy="-125" r="45" fill="blue" filter="url(#ffleetcolor)" id="fleetcolor" opacity="1" />
 			<circle id="resourcesAvailable" cx="0" cy="-0" r="40" fill="url(#blipPulse)" opacity="0"><animate attributeName="r" begin="0s" dur="3s" values="40;45;40" repeatCount="indefinite" /></circle>
@@ -218,6 +218,12 @@
 			</clipPath>
 			<circle id="resourcesReady" clip-path="url(#clockmask)" cx="0" cy="-0" r="45" fill="blue" filter="url(#ffleetcolor)" />
 			<!-- <path d="M 0,0 L 0 -45 A 150,150 0 0,0 -150,150" fill="white" stroke-color="red" stroke="2"/> -->
+
+			<image id="resourceplus" xlink:href="assets/Asteroids/resourceplus.png" x="-21" y="-25" height="49px" width="43px" opacity="0">
+				<animate attributeName="opacity" begin="0s" dur="2s" values="0;1;0" begin="indefinite" repeatCount="1" />
+				<animate attributeName="y" begin="0s" dur="2s" values="-25;-120" begin="indefinite" repeatCount="1" />
+			</image>
+
 			<g id="h2ohex" transform="translate(108,-125)">
 				<use id="h2ohex" xlink:href = "#hex" opacity="1" />
 				<text x = "0" y = "0" class="hexValue">60</text>
