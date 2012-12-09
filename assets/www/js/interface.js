@@ -8,6 +8,35 @@ if (is_touch_device())
     touchEvent = 'touchend';
   }
 
+var sysDiagTime = 5; //seconds
+
+var disableRunDiagnostic = function() {
+	$('#runsysdiag').addClass('disabled').off(touchEvent)
+}
+var enableRunDiagnostic = function() {
+	$('#runsysdiag').on(touchEvent,function() {
+		// playAudio(buttonSound, eventPlayer);
+		runDiagnostic();
+  	}).removeClass('disabled');
+}
+var runDiagnostic = function() {
+	disableRunDiagnostic();
+	$('#systemsDisplay>p').show()
+	$('#repairbutton').hide()
+	$('#systemsDisplay>p').html('system diagnostic in progress... <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
+	countdown(sysDiagTime-1,'#sysdiagcountdown',function() {
+		if(getSensorStatus()) {
+			$('#systemsDisplay>p').html('all systems functional');
+			$('#statusbox').addClass('statusGreen');
+		}
+		else {
+			$('#systemsDisplay>p').hide()
+			$('#repairbutton').fadeIn()
+		}
+	})
+
+}
+
 var setFuel = function(newValue) { // newValue is between 0 and 1
 	if (newValue <=1 && newValue >=0) {
 		var newValuePercent = Math.floor(newValue*100) + '%';

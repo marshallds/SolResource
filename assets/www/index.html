@@ -342,20 +342,20 @@
   	$('#overlayClickZone').on(touchEvent,function() {
   		$('#overlayMenu').toggleClass('active')
   	});
-  	$('#sensorsButton').bind(touchEvent,function() {
+  	$('#sensorsButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
   		$(this).parent().toggleClass('logisticsActive')
   		$('#sensorsTab').toggleClass('active')
   	});
-  	$('#sensorsTab h2').bind(touchEvent,function() {
+  	$('#sensorsTab h2').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
   		$(this).parent().toggleClass('active');
   		$('#logisticsTabMain').toggleClass('logisticsActive')
   	});
 
-  	$('#overlayMenu nav li').bind(touchEvent,function() {
+  	$('#overlayMenu nav li').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
   		$('#overlayMenu li').removeClass('active');
@@ -374,24 +374,7 @@
   		$(this).toggleClass('active')
   		$(this).find('div').slideToggle(1000);
   	});
-  	$('#runsysdiag').bind(touchEvent,function() {
-  		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
-
-		$('#systemsDisplay>p').show()
-		$('#repairbutton').hide()
-  		$('#systemsDisplay>p').html('system diagnostic in progress... <span id="sysdiagcountdown">' + formatTime(sysDiagTime) + '</span> remaining')
-  		countdown(sysDiagTime-1,'#sysdiagcountdown',function() {
-  			if(getSensorStatus()) {
-  				$('#systemsDisplay>p').html('all systems functional');
-  				$('#statusbox').addClass('statusGreen');
-  			}
-  			else {
-  				$('#systemsDisplay>p').hide()
-  				$('#repairbutton').show()
-  			}
-  		})
-  	});
+	enableRunDiagnostic();
   	$('#fleetButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
