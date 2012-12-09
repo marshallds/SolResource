@@ -328,9 +328,9 @@
 	}
 	
 	function playAudio(src, player) {
-		player = new Media(src, onAudioSuccess, onAudioError);
+		// player = new Media(src, onAudioSuccess, onAudioError);
 		
-		player.play();
+		// player.play();
 	}
 	
 	function onAudioSuccess() {
@@ -354,12 +354,16 @@
   	$('#blips use').on(touchEvent,function() {
   		$('#map').animate({svgTransform:'scale(20) translate(' + -$(this).attr('x') + ',' + -$(this).attr('y') + ')'},3000,'swing')
   		$(this).animate({svgOpacity:0},3500)
-  		$('#'+$(this).attr('ref')).animate({svgOpacity:1},3000,'swing')
+  		$('#'+$(this).attr('ref')).animate({svgOpacity:1},3000,'swing');
+  		
+  		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
+  		})
 
   	})
   	$('.asteroidfield circle').on(touchEvent, function() {
   		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing',function() {
-  			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0,'swing')
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0)
   			$('#asteroidinfo').animate({svgOpacity:1},600,'swing')
   		})
   	})

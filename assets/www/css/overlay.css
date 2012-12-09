@@ -251,10 +251,6 @@
 		height: 151px;
 		font-size: 2.1em;
 	}
-	#scanbutton:active {
-		/*background: url(../assets/logistics/scanbuttonpress.png) no-repeat;*/
-		box-shadow: 0 0 18px #fff;
-	}
 	#scanbutton p {
 		padding: 0.25em 1em 0 0;
 	}
@@ -274,7 +270,7 @@
 		background: url(../assets/logistics/repairbutton.png) no-repeat;
 		margin: 13px 9px;
 	}
-	#repairbutton:active {
+	#repairbutton:active,#scanbutton:active,#addFuelButton:active {
 		box-shadow: 0 0 18px #fff;
 	}
 	#repairbutton p {
