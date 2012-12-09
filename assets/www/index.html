@@ -41,7 +41,7 @@
 <body>
 	<!-- <audio id="music" src="assets/Sounds/redglowingdust.mp3" autoplay></audio> -->
 	<!-- <audio id="buttonsound"><source src="assets/Sounds/menuclick.mp3"></source></audio> -->
-	<div id="intro"><video src="assets/Demo1.mp4" poster="assets/a_title.png" autoplay controls preload="true"></video></div>
+	<!-- <div id="intro"><video src="assets/Demo1.mp4" poster="assets/a_title.png" autoplay controls preload="true"></video></div> -->
 <div id="container">
 
 
@@ -192,19 +192,29 @@
 			<circle cx="-800" cy="0" r="800" id="orbit" />
 			<circle id="rangering" cx="0" cy="0" r="400" fill="url(#g1)" transform="scale(0)" />
 			<g id="blips">
-				<use id="loc0" x = "100" y = "150" xlink:href = "#blip" opacity="0" />
-				<use id="loc1" x = "-180" y = "110" xlink:href = "#blip" opacity="0" />
-				<use id="loc2" x = "230" y = "-70" xlink:href = "#blip" opacity="0" />
+				<use id="loc0" x = "100" y = "150" xlink:href = "#blip" opacity="0" ref="asteroidfield0"/>
+				<use id="loc1" x = "-180" y = "110" xlink:href = "#blip" opacity="0" ref="asteroidfield1" />
+				<use id="loc2" x = "230" y = "-70" xlink:href = "#blip" opacity="0" ref="asteroidfield2" />
 			</g>
 			<circle cx="0" cy="0" r="17" fill="blue" filter="url(#fearth)" id="earth" />
-			<g id="asteroidfield" x="100" y="150" transform="translate(100,150) scale(0.05)" opacity="0">
+			<g class="asteroidfield" id="asteroidfield0" x="100" y="150" transform="translate(100,150) scale(0.05)" opacity="0">
 				<circle cx="48" cy="-146" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
 				<circle cx="-120" cy="-230" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
 				<circle cx="190" cy="90" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
 				<circle cx="-277" cy="270" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
 			</g>
-
-
+			<g class="asteroidfield" id="asteroidfield1" x="-180" y="110" transform="translate(-180,110) scale(0.05)" opacity="0">
+				<circle cx="50" cy="-168" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
+				<circle cx="-285" cy="222" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
+				<circle cx="79" cy="171" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
+				<circle cx="-92" cy="-293" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+			</g>
+			<g class="asteroidfield" id="asteroidfield2" x="230" y="-70" transform="translate(230,-70) scale(0.05)" opacity="0">
+				<circle cx="-31" cy="102" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
+				<circle cx="192" cy="-46" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
+				<circle cx="65" cy="-236" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
+				<circle cx="-89" cy="-95" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+			</g>
 
 		</g>
 		<g id="asteroidinfo" opacity="0" transform="translate(0,1000)">
@@ -265,6 +275,9 @@
 	var backgroundPlayer = null;
 	var eventPlayer = null;
 	var buttonSound = "/android_asset/www/assets/Sounds/menuclick.mp3";
+	var fuelup = "/android_asset/www/assets/Sounds/fuelup.mp3";
+	var fueldown = "/android_asset/www/assets/Sounds/fueldown.mp3";
+	var gangnam = "/android_asset/www/assets/Sounds/GANGNAMSTYLE.mp3";
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
 	document.addEventListener("pause", pauseGame, false);
@@ -316,10 +329,10 @@
   	$('#blips use').on(touchEvent,function() {
   		$('#map').animate({svgTransform:'scale(20) translate(' + -$(this).attr('x') + ',' + -$(this).attr('y') + ')'},3000,'swing')
   		$(this).animate({svgOpacity:0},3500)
-  		$('#asteroidfield').animate({svgOpacity:1},3000,'swing')
+  		$('#'+$(this).attr('ref')).animate({svgOpacity:1},3000,'swing')
 
   	})
-  	$('#asteroidfield circle').on(touchEvent, function() {
+  	$('.asteroidfield circle').on(touchEvent, function() {
   		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing',function() {
   			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0,'swing')
   			$('#asteroidinfo').animate({svgOpacity:1},600,'swing')
@@ -368,7 +381,7 @@
   		$('#overlayMenu>.active').removeClass('active');
 		$(targetTab).addClass('active');
   	});
-  	$('.mission, .minimalList li').bind(touchEvent,function() {
+  	$('.mission, .minimalList li').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
   		$(this).toggleClass('active')
