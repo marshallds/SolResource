@@ -292,9 +292,9 @@
 	}
 	
 	function playIntroVideo(src) {
-		//player = new Media(src, onIntroVideoSuccess, onVideoError);
+		player = new Media(src, onIntroVideoSuccess, onVideoError);
 		
-		//player.play();
+		player.play();
 		
 		window.plugins.videoPlayer.play(introVideo);
 	}
