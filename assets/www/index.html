@@ -258,6 +258,7 @@
 </div>
 
 <script src="cordova-2.2.0.js"></script>
+<script src="video.js"></script>
 <script src="js/jquery1.8.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.svg.min.js"></script>
 <script type="text/javascript" src="js/jquery.svgdom.min.js"></script>
@@ -275,6 +276,7 @@
 	var backgroundPlayer = null;
 	var eventPlayer = null;
 	var buttonSound = "/android_asset/www/assets/Sounds/menuclick.mp3";
+	var introVideo = "file:///android_asset/www/assets/Demo1.mp4";
 	var fuelup = "/android_asset/www/assets/Sounds/fuelup.mp3";
 	var fueldown = "/android_asset/www/assets/Sounds/fueldown.mp3";
 	var gangnam = "/android_asset/www/assets/Sounds/GANGNAMSTYLE.mp3";
@@ -284,7 +286,29 @@
 	document.addEventListener("resume", resumeGame, false);
 	
 	function onDeviceReady() {
+		playIntroVideo(introVideo);
+		//playAudio("/android_asset/www/assets/Sounds/redglowingdust.mp3", backgroundPlayer);
+	}
+	
+	function playIntroVideo(src) {
+		//player = new Media(src, onIntroVideoSuccess, onVideoError);
+		
+		//player.play();
+		
+		window.plugins.videoPlayer.play(introVideo);
+	}
+	
+	function onIntroVideoSuccess() {
+		console.log("Intro Video Success!");
 		playAudio("/android_asset/www/assets/Sounds/redglowingdust.mp3", backgroundPlayer);
+	}
+	
+	function onVideoSuccess() {
+		console.log("Video Success!");
+	}
+	
+	function onVideoError(error) {
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	}
 	
 	function pauseGame() {
