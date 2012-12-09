@@ -78,6 +78,7 @@
 	<div id="logisticsTab">
 		<div id="logisticsTabMain">
 			<div id="sensorsButton"></div>
+			<div id="addFuelButton"></div>
 		</div>
 		<div id="sensorsTab">
 			<h2>Sensors <span>Rating 1</span></h2>
@@ -383,13 +384,18 @@
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
   		$(this).parent().toggleClass('logisticsActive')
-  		$('#sensorsTab').toggleClass('active')
+  		$('#sensorsTab').toggleClass('active');
   	});
   	$('#sensorsTab h2').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound, eventPlayer);
-  		$(this).parent().toggleClass('active');
   		$('#logisticsTabMain').toggleClass('logisticsActive')
+  		$(this).parent().toggleClass('active');
+  	});
+  	$('#addFuelButton').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound, eventPlayer);
+  		setFuel(0.92)
   	});
 
   	$('#overlayMenu nav li').on(touchEvent,function() {

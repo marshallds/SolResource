@@ -174,13 +174,23 @@
 		width:600px;
 		height: 100px;
 	}
+	#addFuelButton {
+		position: absolute;
+		right:50px;
+		top:560px;
+		width:186px;
+		height: 99px;
+		background: url(../assets/logistics/fuel.png);
+	}
 	#sensorsTab {
 		padding: 5px 38px;
 		font-size: 1em;
 		font-weight: 200;
+		z-index: -1;
 	}
 	#logisticsTab>div.active {
 		opacity: 1;
+		z-index: 10;
 	}
 	#sensorsTab h2 {
 		background: url(../assets/logistics/sensorbar.png) no-repeat;
