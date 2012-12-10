@@ -159,9 +159,9 @@
 			<circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3"/>
 			<circle cx = "0" cy = "0" r = "7" fill = "#3ddeed" stroke = "none" stroke-width = "0"/>
 		</g>
-		<g id="hex">
-		<path d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60" fill="rgba(255,255,255,0.15)" />
-</g>
+
+		<path id="hex" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" fill="rgba(255,255,255,0.15)" />
+
 		<radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
 			<stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0"/>
 			<stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0"/>
@@ -169,30 +169,27 @@
 			<stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.25"/>
 		</radialGradient>
 
-		<filter id="fearth" x="0%" y="0%" width="100%" height="100%">
-			<feImage xlink:href = "assets/earth.png"/>
-		</filter>
-		<filter id = "fasteroid1" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/ice1.png"/>
-		</filter>
-		<filter id = "fasteroid2" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/ice2.png"/>
-		</filter>
-		<filter id = "fasteroid3" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/iron1.png"/>
-		</filter>
-		<filter id = "fasteroid4" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/iron2.png"/>
-		</filter>
-		<filter id = "ffleetcolor" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/fleeticoncolor.png"/>
-		</filter>
-		<filter id = "ffleetgray" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/fleeticongray.png"/>
-		</filter>
-		<filter id = "fdeployarrow" x = "0%" y = "0%" width = "100%" height = "100%">
-			<feImage xlink:href = "assets/Asteroids/deployarrow.png"/>
-		</filter>
+		<pattern id="iearth" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/earth.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="iasteroid1" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/ice1.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="iasteroid2" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/ice2.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="iasteroid3" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/iron1.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="iasteroid4" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/iron2.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="ifleetcolor" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/fleeticoncolor.png" x="0" y="0" width="1" height="1" />
+		</pattern>
+		<pattern id="ifleetgray" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+		    <image xlink:href="assets/Asteroids/fleeticongray.png" x="0" y="0" width="1" height="1" />
+		</pattern>
 	</defs>
 
 	<g id="mapcenter" transform="translate(400,600)">
@@ -204,32 +201,34 @@
 				<use id="loc1" x = "-180" y = "110" xlink:href = "#blip" opacity="0" ref="asteroidfield1" />
 				<use id="loc2" x = "230" y = "-70" xlink:href = "#blip" opacity="0" ref="asteroidfield2" />
 			</g>
-			<circle cx="0" cy="0" r="17" fill="blue" filter="url(#fearth)" id="earth" />
+			<circle cx="0" cy="0" r="17" fill="url(#iearth)" id="earth" />
 			<g class="asteroidfield" id="asteroidfield0" x="100" y="150" transform="translate(100,150) scale(0.05)" opacity="0">
-				<circle cx="48" cy="-146" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
-				<circle cx="-120" cy="-230" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
-				<circle cx="190" cy="90" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
-				<circle cx="-277" cy="270" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+				<circle cx="48" cy="-146" r="25" fill="url(#iasteroid1)" id="asteroid1" />
+				<circle cx="-120" cy="-230" r="25" fill="url(#iasteroid2)" id="asteroid2" />
+				<circle cx="190" cy="90" r="25" fill="url(#iasteroid3)" id="asteroid3" />
+				<circle cx="-277" cy="270" r="25" fill="url(#iasteroid4)" id="asteroid4" />
 			</g>
 			<g class="asteroidfield" id="asteroidfield1" x="-180" y="110" transform="translate(-180,110) scale(0.05)" opacity="0">
-				<circle cx="50" cy="-168" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
-				<circle cx="-285" cy="222" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
-				<circle cx="79" cy="171" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
-				<circle cx="-92" cy="-293" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+				<circle cx="50" cy="-168" r="25" fill="url(#iasteroid1)" id="asteroid1" />
+				<circle cx="-285" cy="222" r="25" fill="url(#iasteroid2)" id="asteroid2" />
+				<circle cx="79" cy="171" r="25" fill="url(#iasteroid3)" id="asteroid3" />
+				<circle cx="-92" cy="-293" r="25" fill="url(#iasteroid4)" id="asteroid4" />
 			</g>
 			<g class="asteroidfield" id="asteroidfield2" x="230" y="-70" transform="translate(230,-70) scale(0.05)" opacity="0">
-				<circle cx="-31" cy="102" r="25" fill="grey" filter="url(#fasteroid1)" id="asteroid1" />
-				<circle cx="192" cy="-46" r="25" fill="grey" filter="url(#fasteroid2)" id="asteroid2" />
-				<circle cx="65" cy="-236" r="25" fill="grey" filter="url(#fasteroid3)" id="asteroid3" />
-				<circle cx="-89" cy="-95" r="25" fill="grey" filter="url(#fasteroid4)" id="asteroid4" />
+				<circle cx="-31" cy="102" r="25" fill="url(#iasteroid1)" id="asteroid1" />
+				<circle cx="192" cy="-46" r="25" fill="url(#iasteroid2)" id="asteroid2" />
+				<circle cx="65" cy="-236" r="25" fill="url(#iasteroid3)" id="asteroid3" />
+				<circle cx="-89" cy="-95" r="25" fill="url(#iasteroid4)" id="asteroid4" />
 			</g>
 
 		</g>
 		<g id="asteroidinfo" opacity="0" transform="translate(0,1000)">
 			<image id="deployarrow" xlink:href="assets/Asteroids/deployarrow.png" x="-30" y="-105" width="60" height="45" />
-			<circle cx="0" cy="-125" r="45" fill="blue" filter="url(#ffleetcolor)" id="fleetcolor" opacity="1" />
-			<circle id="resourcesAvailable" cx="0" cy="-0" r="40" fill="url(#blipPulse)" opacity="0"><animate attributeName="r" begin="0s" dur="3s" values="40;45;40" repeatCount="indefinite" /></circle>
-			<circle cx="0" cy="0" r="45" fill="blue" filter="url(#ffleetgray)" id="fleetgray" />
+			<circle cx="0" cy="-125" r="45" fill="url(#ifleetcolor)" id="fleetcolor" opacity="1" />
+			<circle id="resourcesAvailable" cx="0" cy="-0" r="40" fill="url(#blipPulse)" opacity="0">
+				<animate attributeName="r" begin="0s" dur="3s" values="40;45;40" repeatCount="indefinite" />
+			</circle>
+			<circle cx="0" cy="0" r="45" fill="url(#ifleetgray)" id="fleetgray" />
 
 			<clipPath id="clockmask">
 				<!-- <path d="M 0 45 A 150,150 0 0,0 -150,150" /> -->
@@ -242,10 +241,10 @@
 				<animate attributeName="y" begin="0s" dur="2s" values="-25;-120" begin="indefinite" repeatCount="1" />
 			</image> -->
 			
-			<circle id="resourcesReady" clip-path="url(#clockmask)" cx="0" cy="-0" r="45" fill="blue" filter="url(#ffleetcolor)" />
+			<circle id="resourcesReady" clip-path="url(#clockmask)" cx="0" cy="-0" r="45" fill="url(#ifleetcolor)" />
 
 			<g id="h2ohex" transform="translate(108,-125)">
-				<use xlink:href = "#hex" opacity="1" />
+				<use xlink:href="#hex" opacity="1" />
 				<text x = "0" y = "0" class="hexValue">60</text>
 				<text x = "0" y = "30"  class="hexLabel">H<tspan baseline-shift = "sub" font-size="0.7em">2</tspan>O</text>
 			</g>
@@ -319,9 +318,9 @@
 	}
 	
 	function playAudio(src) {
-		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		// eventPlayer = new Media(src, onAudioSuccess, onAudioError);
 		
-		eventPlayer.play();
+		// eventPlayer.play();
 	}
 	
 	function onAudioSuccess() {
