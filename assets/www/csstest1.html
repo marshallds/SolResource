@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Sol Resource</title>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	@import url(css/interface.css);
+	@import url(css/overlay.css);
+
+	.red {
+		background-color: red;
+		height: 100px;
+	}
+	.maskGradient {
+		-webkit-mask:-webkit-linear-gradient(left,rgba(255,255,255,0) 50%,rgba(0,0,0,1) 50%);
+
+	}
+	.maskImage {
+		-webkit-mask:url(assets/Interface/lowerbarmask.png)
+	}
+	.maskOtherImage {
+		-webkit-mask:url(assets/Interface/midbackground.png)
+	}
+	</style>
+</head>
+<body>
+
+<div id="container">
+<h1>-webkit-mask test</h1>
+
+<div class="red maskGradient">this should be masked using linear gradient</div>
+
+<div class="red maskImage">this should be masked using image</div>
+<div class="red maskOtherImage">this should be slightly dimmer red</div>
+
+</div>
+
+<script src="cordova-2.2.0.js"></script>
+<script src="video.js"></script>
+<script src="js/jquery1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.svg.min.js"></script>
+<script type="text/javascript" src="js/jquery.svgdom.min.js"></script>
+<script type="text/javascript" src="js/jquery.svganim.min.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+  });
+</script>
+
+</body>
+</html>
