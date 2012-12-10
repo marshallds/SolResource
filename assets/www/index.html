@@ -132,6 +132,7 @@
 		<li><a href="svgtest3.html">Tests gradient animations</a></li>
 		<li><a href="svgtest4.html">That other guys animation</a></li>
 		<li><a href="svgtest5.html">Embeded SVG animation</a></li>
+		<li><a href="svgtest6.html">Simple animation test</a></li>
 	</ul>
 	
 </div>
@@ -160,7 +161,7 @@
 			<circle cx = "0" cy = "0" r = "7" fill = "#3ddeed" stroke = "none" stroke-width = "0"/>
 		</g>
 
-		<path id="hex" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" fill="rgba(255,255,255,0.15)" />
+		<path id="resourcehex" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" fill="rgba(255,255,255,0.15)" />
 
 		<radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
 			<stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0"/>
@@ -168,6 +169,12 @@
 			<stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.1"/>
 			<stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.25"/>
 		</radialGradient>
+
+
+		<clipPath id="clockmask">
+			<!-- <path d="M 0 45 A 150,150 0 0,0 -150,150" /> -->
+			<rect x="-50" y="50" width="100" height="100" />
+		</clipPath>
 
 		<pattern id="iearth" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
 		    <image xlink:href="assets/earth.png" x="0" y="0" width="1" height="1" />
@@ -230,10 +237,6 @@
 			</circle>
 			<circle cx="0" cy="0" r="45" fill="url(#ifleetgray)" id="fleetgray" />
 
-			<clipPath id="clockmask">
-				<!-- <path d="M 0 45 A 150,150 0 0,0 -150,150" /> -->
-				<rect x="-50" y="50" width="100" height="100" />
-			</clipPath>
 			<!-- <path d="M 0,0 L 0 -45 A 150,150 0 0,0 -150,150" fill="white" stroke-color="red" stroke="2"/> -->
 
 			<!-- <image id="resourceplus" xlink:href="assets/Asteroids/resourceplus.png" x="-21" y="-25" height="49px" width="43px" opacity="0">
@@ -244,17 +247,17 @@
 			<circle id="resourcesReady" clip-path="url(#clockmask)" cx="0" cy="-0" r="45" fill="url(#ifleetcolor)" />
 
 			<g id="h2ohex" transform="translate(108,-125)">
-				<use xlink:href="#hex" opacity="1" />
+				<use xlink:href="#resourcehex" opacity="1" />
 				<text x = "0" y = "0" class="hexValue">60</text>
 				<text x = "0" y = "30"  class="hexLabel">H<tspan baseline-shift = "sub" font-size="0.7em">2</tspan>O</text>
 			</g>
 			<g id="fehex" transform="translate(180,0)">
-				<use xlink:href = "#hex" opacity="1" />
+				<use xlink:href = "#resourcehex" opacity="1" />
 				<text x = "0" y = "0" class="hexValue">50</text>
 				<text x = "0" y = "30"  class="hexLabel">Fe</text>
 			</g>
 			<g id="pthex" transform="translate(108,125)">
-				<use xlink:href = "#hex" opacity="1" />
+				<use xlink:href = "#resourcehex" opacity="1" />
 				<text x = "0" y = "0" class="hexValue">10</text>
 				<text x = "0" y = "30"  class="hexLabel">Pt</text>
 			</g>
@@ -318,9 +321,9 @@
 	}
 	
 	function playAudio(src) {
-		// eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
 		
-		// eventPlayer.play();
+		eventPlayer.play();
 	}
 	
 	function onAudioSuccess() {
