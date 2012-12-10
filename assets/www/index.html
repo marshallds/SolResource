@@ -276,6 +276,7 @@
 	
 	var backgroundPlayer = null;
 	var eventPlayer = null;
+	var backgroundSound = "/android_asset/www/assets/Sounds/redglowingdust.mp3";
 	var buttonSound = "/android_asset/www/assets/Sounds/menuclick.mp3";
 	var introVideo = "file:///android_asset/www/assets/Demo1.mp4";
 	var fuelup = "/android_asset/www/assets/Sounds/fuelup.mp3";
@@ -283,54 +284,37 @@
 	var gangnam = "/android_asset/www/assets/Sounds/GANGNAMSTYLE.mp3";
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
-	document.addEventListener("pause", pauseGame, false);
-	document.addEventListener("resume", resumeGame, false);
 	
 	function onDeviceReady() {
+		document.addEventListener("pause", pauseGame, false);
+		document.addEventListener("resume", resumeGame, false);
 		playIntroVideo(introVideo);
-		//playAudio("/android_asset/www/assets/Sounds/redglowingdust.mp3", backgroundPlayer);
 	}
 	
-	function playIntroVideo(src) {
-		player = new Media(src, onIntroVideoSuccess, onVideoError);
-		
-		player.play();
-		
-		window.plugins.videoPlayer.play(introVideo);
-	}
-	
-	function onIntroVideoSuccess() {
-		console.log("Intro Video Success!");
-		playAudio("/android_asset/www/assets/Sounds/redglowingdust.mp3", backgroundPlayer);
-	}
-	
-	function onVideoSuccess() {
-		console.log("Video Success!");
-	}
-	
-	function onVideoError(error) {
-		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	function playIntroVideo(src) {	
+		//window.plugins.videoPlayer.play(introVideo);
+
+		playBackgroundAudio(backgroundSound);
 	}
 	
 	function pauseGame() {
-		if(backgroundPlayer){
-			backgroundPlayer.pause();
-		}
-		if(eventPlayer){
-			eventPlayer.pause();
-		}
+		backgroundPlayer.pause();
 	}
 	
 	function resumeGame() {
-		if(backgroundPlayer){
-			backgroundPlayer.play();
-		}
+		backgroundPlayer.play();
 	}
 	
-	function playAudio(src, player) {
-		// player = new Media(src, onAudioSuccess, onAudioError);
+	function playBackgroundAudio(src) {
+		backgroundPlayer = new Media(src, onAudioSuccess, onAudioError);
 		
-		// player.play();
+		backgroundPlayer.play();
+	}
+	
+	function playAudio(src) {
+		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		
+		eventPlayer.play();
 	}
 	
 	function onAudioSuccess() {
@@ -386,25 +370,25 @@
   	});
   	$('#sensorsButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$(this).parent().toggleClass('logisticsActive')
   		$('#sensorsTab').toggleClass('active');
   	});
   	$('#sensorsTab h2').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$('#logisticsTabMain').toggleClass('logisticsActive')
   		$(this).parent().toggleClass('active');
   	});
   	$('#addFuelButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		setFuel(0.92)
   	});
 
   	$('#overlayMenu nav li').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$('#overlayMenu li').removeClass('active');
   		$(this).addClass('active');
   		var targetTab = "#" + $(this).attr('rel');
@@ -417,20 +401,20 @@
   	});
   	$('.mission, .minimalList li').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$(this).toggleClass('active')
   		$(this).find('div').slideToggle(1000);
   	});
 	enableRunDiagnostic();
   	$('#fleetButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$('#notification').html('<div id="fleetlist"><div><h3>Available</h3><p><img src="assets/Interface/babyfleeticon.png">class 1 extractor</p></div><div><h3>Deployed</h3><p><img src="assets/Interface/babyfleeticon.png">ice asteroid: K11428</p></div></div>')
   		$('#notification').fadeToggle()
   	});
   	$('#missionsButton,#notification').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound, eventPlayer);
+		playAudio(buttonSound);
   		$('#notification').html('')
   		$('#notification').fadeToggle()
   	});
