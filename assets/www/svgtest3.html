@@ -1,0 +1,288 @@
+<html>
+<head>
+	<title>Sol Resource</title>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	@import url(css/interface.css);
+	@import url(css/overlay.css);
+
+	svg {
+		width:100%;
+		height:100%;
+	}
+	#rangering {
+		scale:0;
+	}
+	#orbit {
+		  stroke: rgba(150,150,150,0.6);
+		  fill: none;
+		  stroke-width: 2;
+		  stroke-dasharray: 2,4;
+	}
+	text.hexValue {
+		fill: #fff;
+		font-family: euro;
+		font-weight: 300;
+		font-size: 3em;
+		text-anchor:middle;
+		alignment-baseline:baseline;
+	}
+	text.hexLabel {
+		font-family:  'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		fill: #fff;
+		font-size: 1.3em;
+		text-anchor:middle;
+	}
+
+	</style>
+</head>
+<body>
+
+<div id="container">
+<h1>Animation test</h1>
+
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" viewBox="0 0 800 1205">
+
+	<defs>
+		<radialGradient id = "blipPulse1" cx = "50%" cy = "50%" r = "50%">
+
+			<stop stop-color = "#3ddeed" offset = "0" stop-opacity = "0">
+
+			</stop>
+			<stop stop-color = "#3ddeed" offset = "1" stop-opacity = "1">
+
+			</stop>
+
+		</radialGradient>
+		<radialGradient id = "blipPulse2" cx = "50%" cy = "50%" r = "50%">
+
+			<stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "0.2">
+				<animate attributeName="stop-opacity" attributeType="XML" begin="0s" dur="3s" values="1;0;1" repeatCount="indefinite" />
+			</stop>
+			<stop stop-color = "#3ddeed" offset = "0%" stop-opacity = "1">
+				<animate attributeName="offset" attributeType="XML" begin="0s" dur="3s" values="0;1;1;0" repeatCount="indefinite" />
+				<animate attributeName="stop-opacity" attributeType="XML" begin="0s" dur="3s" values="0;1;0;0" repeatCount="indefinite" />
+			</stop>
+
+			<stop stop-color = "#3ddeed" offset = "2" stop-opacity = "0" />
+		</radialGradient>
+		<radialGradient id = "blipPulse3" cx = "50%" cy = "50%" r = "0%">
+
+			<stop stop-color = "#3ddeed" offset = "0" stop-opacity = "0">
+
+			</stop>
+			<stop stop-color = "#3ddeed" offset = "1" stop-opacity = "1">
+
+			</stop>
+
+		</radialGradient>
+
+		<g id="blip1">
+			<circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse1)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3"/>
+			<circle cx = "0" cy = "0" r = "7" fill = "red" stroke = "none" stroke-width = "0"/>
+		</g>
+
+		<g id="blip2">
+			<circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse2)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3"/>
+			<circle cx = "0" cy = "0" r = "7" fill = "green" stroke = "none" stroke-width = "0"/>
+		</g>
+		<g id="blip3">
+			<circle cx = "0" cy = "0" r = "20" fill = "url(#blipPulse3)" stroke = "#3ddeed" stroke-width = "2" opacity="0.3">
+				<animateTransform attributeName="transform" attributeType="XML" type="scale" from="0.5" to="1" dur="2s" additive="replace" fill="freeze" repeatCount="indefinite" />
+			</circle>
+			<circle cx = "0" cy = "0" r = "7" fill = "blue" stroke = "none" stroke-width = "0"/>
+		</g>
+		<radialGradient id = "g1" cx = "50%" cy = "50%" r = "50%">
+			<stop stop-color = "#3ddeed" offset = "0%"  stop-opacity = "0"/>
+			<stop stop-color = "#3ddeed" offset = "60%" stop-opacity = "0"/>
+			<stop stop-color = "#3ddeed" offset = "86%" stop-opacity = "0.1"/>
+			<stop stop-color = "#3ddeed" offset = "100%" stop-opacity = "0.25"/>
+		</radialGradient>
+
+
+	</defs>
+
+	<g id="mapcenter" transform="translate(400,600)">
+		<g id="map" transform="scale(1) translate(0,0)">
+			<circle cx="-800" cy="0" r="800" id="orbit" />
+			<circle id="rangering" cx="0" cy="0" r="400" fill="url(#g1)" transform="scale(1)" />
+			<g id="blips">
+				<use id="loc0" x = "100" y = "150" xlink:href = "#blip1" opacity="1" ref="asteroidfield0" />
+				<use id="loc1" x = "-180" y = "110" xlink:href = "#blip2" opacity="1" ref="asteroidfield1" />
+				<use id="loc2" x = "230" y = "-70" xlink:href = "#blip3" opacity="1" ref="asteroidfield2" />
+			</g>
+
+		</g>
+	</g>
+</svg>
+
+</div>
+
+<script src="cordova-2.2.0.js"></script>
+<script src="video.js"></script>
+<script src="js/jquery1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.svg.min.js"></script>
+<script type="text/javascript" src="js/jquery.svgdom.min.js"></script>
+<script type="text/javascript" src="js/jquery.svganim.min.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+
+  	setFuel(0.82);
+
+  	var scanTime = 3000;
+  	var sysDiagTime = 5; //seconds
+	
+	var backgroundPlayer = null;
+	var eventPlayer = null;
+	var backgroundSound = "/android_asset/www/assets/Sounds/redglowingdust.mp3";
+	var buttonSound = "/android_asset/www/assets/Sounds/menuclick.mp3";
+	var introVideo = "file:///android_asset/www/assets/Demo1.mp4";
+	var fuelup = "/android_asset/www/assets/Sounds/fuelup.mp3";
+	var fueldown = "/android_asset/www/assets/Sounds/fueldown.mp3";
+	var gangnam = "/android_asset/www/assets/Sounds/GANGNAMSTYLE.mp3";
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
+	function onDeviceReady() {
+		document.addEventListener("pause", pauseGame, false);
+		document.addEventListener("resume", resumeGame, false);
+		playIntroVideo(introVideo);
+	}
+	
+	function playIntroVideo(src) {	
+		//window.plugins.videoPlayer.play(introVideo);
+
+		playBackgroundAudio(backgroundSound);
+	}
+	
+	function pauseGame() {
+		backgroundPlayer.pause();
+	}
+	
+	function resumeGame() {
+		backgroundPlayer.play();
+	}
+	
+	function playBackgroundAudio(src) {
+		backgroundPlayer = new Media(src, onAudioSuccess, onAudioError);
+		
+		backgroundPlayer.play();
+	}
+	
+	function playAudio(src) {
+		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		
+		eventPlayer.play();
+	}
+	
+	function onAudioSuccess() {
+		console.log("Audio Success!");
+	}
+	
+	function onAudioError(error) {
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	}
+
+  	$('#scanbutton').on(touchEvent,function() {
+  		$('#overlayMenu').toggleClass('active')
+  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
+  		// $('#rangering use').animate({'opacity':1})
+  		$('#blips use').each(function() {
+  			var distance = Math.sqrt(Math.pow($(this).attr('x'),2) + Math.pow($(this).attr('y'),2));
+  			$(this).delay(distance/400*scanTime).animate({svgOpacity:1},200)
+
+  		})
+  	});
+  	$('#blips use').on(touchEvent,function() {
+  		$('#map').animate({svgTransform:'scale(20) translate(' + -$(this).attr('x') + ',' + -$(this).attr('y') + ')'},3000,'swing')
+  		$(this).animate({svgOpacity:0},3500)
+  		$('#'+$(this).attr('ref')).animate({svgOpacity:1},3000,'swing');
+  		
+  		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
+  		})
+
+  	})
+  	$('.asteroidfield circle').on(touchEvent, function() {
+  		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing',function() {
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0)
+  			$('#asteroidinfo').animate({svgOpacity:1},600,'swing')
+  		})
+  	})
+//   	document.addEventListener("touchstart", function(e){
+// 	    $('h1').html(e.touches[0].pageY);
+
+//     e.preventDefault();//Stops the default behavior
+// }, false);
+  	$('#fleetcolor').on(touchEvent, function() {
+  		$('#fleetcolor, #deployarrow').animate({svgOpacity:0},600,'swing',function() {
+  		})
+		gatherResourcesAnimation(5);
+  	})
+
+  	$('#intro video').on('ended pause',function() {
+  		$(this).parent().remove()
+  	});
+  	$('#overlayClickZone').on(touchEvent,function() {
+  		$('#overlayMenu').toggleClass('active')
+  	});
+  	$('#sensorsButton').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		$(this).parent().toggleClass('logisticsActive')
+  		$('#sensorsTab').toggleClass('active');
+  	});
+  	$('#sensorsTab h2').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		$('#logisticsTabMain').toggleClass('logisticsActive')
+  		$(this).parent().toggleClass('active');
+  	});
+  	$('#addFuelButton').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		setFuel(0.92)
+  	});
+
+  	$('#overlayMenu nav li').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		$('#overlayMenu li').removeClass('active');
+  		$(this).addClass('active');
+  		var targetTab = "#" + $(this).attr('rel');
+  		// $('#overlayMenu>.active').fadeOut('fast', function() {
+  		// 	$(this).removeClass('active');
+	  	// 	$(targetTab).fadeIn('fast').addClass('active')
+  		// })
+  		$('#overlayMenu>.active').removeClass('active');
+		$(targetTab).addClass('active');
+  	});
+  	$('.mission, .minimalList li').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		$(this).toggleClass('active')
+  		$(this).find('div').slideToggle(1000);
+  	});
+	enableRunDiagnostic();
+  	$('#fleetButton').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		$('#notification').html('<div id="fleetlist"><div><h3>Available</h3><p><img src="assets/Interface/babyfleeticon.png">class 1 extractor</p></div><div><h3>Deployed</h3><p><img src="assets/Interface/babyfleeticon.png">ice asteroid: K11428</p></div></div>')
+  		$('#notification').fadeToggle()
+  	});
+  	$('#missionsButton,#notification').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		// $('#notification').html('')
+  		$('#notification').fadeToggle()
+  	});
+
+  });
+</script>
+
+</body>
+</html>

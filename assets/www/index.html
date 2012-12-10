@@ -126,6 +126,13 @@
 </footer>
 
 <div id="notification">
+	<ul>
+		<li><a href="svgtest1.html">Tests image using pattern</a></li>
+		<li><a href="svgtest2.html">Tests path params (hexagons)</a></li>
+		<li><a href="svgtest3.html">Tests gradient animations</a></li>
+		<li><a href="svgtest4.html">That other guys animation</a></li>
+		<li><a href="svgtest5.html">Embeded SVG animation</a></li>
+	</ul>
 	
 </div>
 
@@ -415,7 +422,7 @@
   	$('#missionsButton,#notification').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound);
-  		$('#notification').html('')
+  		// $('#notification').html('')
   		$('#notification').fadeToggle()
   	});
 

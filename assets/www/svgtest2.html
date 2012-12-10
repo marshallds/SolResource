@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>Sol Resource</title>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	@import url(css/interface.css);
+	@import url(css/overlay.css);
+
+	svg {
+		width:100%;
+		height:100%;
+	}
+	#rangering {
+		scale:0;
+	}
+	#orbit {
+		  stroke: rgba(150,150,150,0.6);
+		  fill: none;
+		  stroke-width: 2;
+		  stroke-dasharray: 2,4;
+	}
+	text.hexValue {
+		fill: #fff;
+		font-family: euro;
+		font-weight: 300;
+		font-size: 3em;
+		text-anchor:middle;
+		alignment-baseline:baseline;
+	}
+	text.hexLabel {
+		font-family:  'Source Sans Pro', sans-serif;
+		font-weight: 300;
+		fill: #fff;
+		font-size: 1.3em;
+		text-anchor:middle;
+	}
+
+	</style>
+</head>
+<body>
+
+<div id="container">
+<h1>Tests path params (should see 5 hexagons)</h1>
+
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="100%" viewBox="0 0 800 1205">
+
+	<defs>
+		<path id="hex1" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" fill="rgba(255,255,255,0.15)" />
+		<path id="hex2" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" fill="#fff" opacity="0.15" />
+		<path id="hex3" d="m 0,-60 L 52,-30 L 52,30 L 0,60 L -52,30 L -52,-30 L 0,-60 z" fill="white" />
+	</defs>
+
+	<g id="mapcenter" transform="translate(400,600)">
+		<circle id="test" cx="0" cy="0" r="50" />
+		<g id="asteroidinfo" opacity="1" transform="translate(0,0)">
+			<path id="hextest1" x="-180" y="0" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60 z" transform="translate(-180,0)" fill="white" />
+			<path id="hextest2" x="-180" y="0" d="m 0 -60 L 52 -30 L 52 30 L 0 60 L -52 30 L -52 -30 L 0 -60" transform="translate(-360,0)" fill="white" />
+			<g id="h2ohex" transform="translate(108,-125)">
+				<use xlink:href = "#hex1" opacity="1" />
+				<text x = "0" y = "0" class="hexValue">60</text>
+				<text x = "0" y = "30"  class="hexLabel">H<tspan baseline-shift = "sub" font-size="0.7em">2</tspan>O</text>
+			</g>
+			<g id="fehex" transform="translate(180,0)">
+				<use xlink:href="#hex2" opacity="1" />
+				<text x = "0" y="0" class="hexValue">50</text>
+				<text x = "0" y="30"  class="hexLabel">Fe</text>
+			</g>
+			<g id="pthex" transform="translate(108,125)">
+				<use xlink:href = "#hex3" opacity="1" />
+				<text x = "0" y = "0" class="hexValue">10</text>
+				<text x = "0" y = "30"  class="hexLabel">Pt</text>
+			</g>
+		</g>
+	</g>
+</svg>
+
+</div>
+
+<script src="cordova-2.2.0.js"></script>
+<script src="video.js"></script>
+<script src="js/jquery1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.svg.min.js"></script>
+<script type="text/javascript" src="js/jquery.svgdom.min.js"></script>
+<script type="text/javascript" src="js/jquery.svganim.min.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+  });
+</script>
+
+</body>
+</html>
