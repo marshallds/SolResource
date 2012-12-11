@@ -323,9 +323,9 @@
 	}
 	
 	function playAudio(src) {
-		// eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
 		
-		// eventPlayer.play();
+		eventPlayer.play();
 	}
 	
 	function onAudioSuccess() {
@@ -342,6 +342,7 @@
 
   	$('#scanbutton').on(touchEvent,function() {
   		if(useFuel(0.05)) {
+			playAudio(fueldown);
 			zoomOut()
 	  		$('#overlayMenu').toggleClass('active')
 	  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
@@ -404,7 +405,7 @@
   	});
   	$('#addFuelButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
-		playAudio(buttonSound);
+		playAudio(fuelup);
   		refuel();
   	});
 
