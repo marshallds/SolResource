@@ -281,7 +281,7 @@
   $(document).ready(function() {
 
 
-  	setFuel(0.82);
+  	//setFuel(0.82);
 
   	var scanTime = 3000;
   	var sysDiagTime = 5; //seconds
@@ -396,7 +396,7 @@
   	$('#addFuelButton').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound);
-  		setFuel(0.92)
+  		refuel();
   	});
 
   	$('#overlayMenu nav li').on(touchEvent,function() {
