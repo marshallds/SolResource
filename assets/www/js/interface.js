@@ -76,6 +76,16 @@ var countdown = function(time,target,callback){
   }, 1000);
 };
 
+var zoomOut = function() {
+		
+		$('#map').animate({svgTransform:'scale(1) translate(0,0)'},3000,'swing')
+  		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
+  		})
+  		$('#blips use').animate({svgOpacity:1},800)
+		$('#zoomoutButton').fadeOut();
+}
+
 var getSensorStatus = function() {
 	return false;
 }

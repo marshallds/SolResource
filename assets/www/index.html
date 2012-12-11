@@ -337,16 +337,12 @@
 	}
 
 	$('#zoomoutButton').on(touchEvent,function() {
-		$('#map').animate({svgTransform:'scale(1) translate(0,0)'},3000,'swing')
-  		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
-  			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
-  		})
-  		$('#blips use').animate({svgOpacity:1},800)
-		$(this).fadeOut();
+		zoomOut()
 	})
 
   	$('#scanbutton').on(touchEvent,function() {
   		if(useFuel(0.05)) {
+			zoomOut()
 	  		$('#overlayMenu').toggleClass('active')
 	  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
 	  		// $('#rangering use').animate({'opacity':1})
@@ -371,6 +367,8 @@
   	$('.asteroidfield circle').on(touchEvent, function() {
   		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing',function() {
   			getAsteroidDetails();
+  			$('#fleetcolor, #deployarrow').animate({svgOpacity:1},600,'swing',function() {
+  		})
   			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0)
   			$('#asteroidinfo').animate({svgOpacity:1},600,'swing')
   		})
@@ -436,12 +434,23 @@
   		$('#notification').html('<div id="fleetlist"><div><h3>Available</h3><p><img src="assets/Interface/babyfleeticon.png">class 1 extractor</p></div><div><h3>Deployed</h3><p><img src="assets/Interface/babyfleeticon.png">ice asteroid: K11428</p></div></div>')
   		$('#notification').fadeToggle()
   	});
-  	$('#missionsButton,#notification').on(touchEvent,function() {
+  	$('#notification').on(touchEvent,function() {
   		//document.getElementById('buttonsound').play()
 		playAudio(buttonSound);
   		$('#notification').html('')
   		$('#notification').fadeToggle()
   	});
+  	$('#missionsButton').on(touchEvent,function() {
+  		//document.getElementById('buttonsound').play()
+		playAudio(buttonSound);
+  		
+  		$('#overlayMenu div,#overlayMenu li').removeClass('active');
+  		$('#overlayMenu li').eq(1).addClass('active');
+  		$('#missionsTab').addClass('active');
+  		$('#overlayMenu').addClass('active')
+
+  	});
+
 
   });
 </script>
