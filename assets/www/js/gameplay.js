@@ -14,6 +14,10 @@ setFuel(fuel);
 updatePlayerResources(hydrogen, oxygen, iron, platinum);
 
 function getAsteroidDetails() {
+	asteroidH2O = 60;
+	asteroidIron = 40;
+	asteroidPlatinum = 10;
+	
 	updateResources(60,40,10);
 }
 
