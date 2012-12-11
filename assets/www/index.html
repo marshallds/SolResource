@@ -324,9 +324,9 @@
 	}
 	
 	function playAudio(src) {
-		eventPlayer = new Media(src, onAudioSuccess, onAudioError);
+		// eventPlayer = new Media(src, onAudioSuccess, onAudioError);
 		
-		eventPlayer.play();
+		// eventPlayer.play();
 	}
 	
 	function onAudioSuccess() {
@@ -359,6 +359,7 @@
   	})
   	$('.asteroidfield circle').on(touchEvent, function() {
   		$('#map').animate({svgTransform:'scale(80) translate(' + ( - $(this).parent().attr('x') - $(this).attr('cx')*0.05) + ',' + ( - $(this).parent().attr('y') - $(this).attr('cy')*0.05) + ')'},1000,'swing',function() {
+  			updateResources(10,20,30)
   			$('#asteroidinfo').animate({svgTransform:'translate(0,0)'},0)
   			$('#asteroidinfo').animate({svgOpacity:1},600,'swing')
   		})

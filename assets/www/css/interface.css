@@ -154,7 +154,7 @@
 		top: 80px;
 		text-align: center;
 		font-family: euro;
-		opacity: 0.99;
+		opacity: 0.7;
 	}
 	.resourceBar p {
 		font-size: 2.4em;
@@ -162,6 +162,7 @@
 	}
 	.resourceBar h3 {
 		font-size: 1.5em;
+		text-transform: uppercase;
 	}
 
 	#notification {

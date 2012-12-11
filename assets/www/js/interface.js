@@ -89,16 +89,22 @@ var retrieveResources = function() {
 	setFuel(.78)
 	return true;
 }
+var updatePlayerResources = function(H,O,Fe,Pt) {
+	$('.resourceBar p').eq(0).text(H)
+	$('.resourceBar p').eq(1).text(O)
+	$('.resourceBar p').eq(2).text(Fe)
+	$('.resourceBar p').eq(3).text(Pt)
+}
 
 var gatherResourcesAnimation = function(duration) {
 	$('#clockmask rect').animate({svgY:-50},duration*1000,'linear',function() {
 		$('#resourcesAvailable').animate({svgOpacity:1},200)
 		$('#resourcesReady').bind(touchEvent, function() {
-			retrieveResources();
+			// retrieveResources();
 			$('#resourcesAvailable').animate({svgOpacity:0},0)
 			$('#clockmask rect').animate({svgY:50},0,'linear',function(){})
 			$(this).unbind()
-			gatherResourcesAnimation(duration);
+			if(retrieveResources()) gatherResourcesAnimation(duration);
 		})
 	})
 }
