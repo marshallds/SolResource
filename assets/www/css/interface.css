@@ -81,7 +81,7 @@
 		left:0;
 		right: 0;
 		height:200px;
-		background: url(../assets/Interface/lowerbar.png) 0 30px no-repeat;
+		background: url(../assets/Interface/lowerbarwfuel.png) 0 30px no-repeat;
 	}
 	h3 {
 		font-family: euro;
@@ -104,16 +104,16 @@
 	#fuelbar {
 		position: absolute;
 		top:30px;
-		left:0px;
-		right:0px;
+		left:74px;
+		right:80px;
 		height:7px;
 		padding:16px 0;
 		/*background: url(../assets/Interface/energybarbase.png) no-repeat;*/
-		/*background: -webkit-linear-gradient(left,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.3) 50%);*/
+		/*background: -webkit-linear-gradient(left,rgba(255,255,255,0.45) 50%,rgba(255,255,255,0.2) 50%);*/
 		background: rgba(255,255,255,0.3);
 		background-clip: content-box !important; 
-		-webkit-mask-image: url(../assets/Interface/lowerbarmask.png);
-		-webkit-mask-clip:padding;
+		/*-webkit-mask-image: url(../assets/Interface/lowerbarmask.png);*/
+		/*-webkit-mask-clip:padding;*/
 		/*-webkit-transition: all 0.6s ease;*/
 		/*-webkit-transform: translate3d(0,0,0);*/
 	}
