@@ -42,7 +42,7 @@ var setFuel = function(newValue) { // newValue is between 0 and 1
 		var newValuePercent = Math.floor(newValue*100) + '%';
 		var scaledValue = newValue*646;
 		$('#fuelLabel').text(newValuePercent); //floor or round?
-		if (scaledValue > 140) $('#fuelLabel').css("left", scaledValue + 50)
+		if (scaledValue > 140) $('#fuelLabel').css("left", scaledValue + 40)
 	else $('#fuelLabel').css("left", 140)
 		$('#fuelbar img').css("left", scaledValue - 40)
 		if (newValue >0.15) $('#fuelbar').css({"background":"-webkit-linear-gradient(left,rgba(255,255,255,0.45) " + scaledValue + ",rgba(255,255,255,0.2) " + scaledValue + ")"})
@@ -77,7 +77,7 @@ var countdown = function(time,target,callback){
 };
 
 var zoomOut = function() {
-		
+
 		$('#map').animate({svgTransform:'scale(1) translate(0,0)'},3000,'swing')
   		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
   			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)

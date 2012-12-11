@@ -1,4 +1,4 @@
-var fuel = 0.70;
+var fuel = 0.30;
 
 var hydrogen = 20;
 var oxygen = 30;
