@@ -84,11 +84,11 @@ var updateResources = function(H2O,Fe,Pt) {
 	$('#fehex .hexValue').text(Fe);
 	$('#pthex .hexValue').text(Pt);
 }
-var retrieveResources = function() {
-	updateResources(40,10,8)
-	setFuel(.78)
-	return true;
-}
+// var retrieveResources = function() {
+// 	updateResources(40,10,8)
+// 	setFuel(.78)
+// 	return true;
+// }
 var updatePlayerResources = function(H,O,Fe,Pt) {
 	$('.resourceBar p').eq(0).text(H)
 	$('.resourceBar p').eq(1).text(O)
