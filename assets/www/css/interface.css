@@ -219,6 +219,14 @@
 		min-height: 1200px;
 	}
 
+	#zoomoutButton {
+		position: absolute;
+		display: none;
+		top:220px;
+		left:25px;
+		width:75px;
+	}
+
 
 	.yellow {
 		color:#fb0;

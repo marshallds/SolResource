@@ -79,6 +79,9 @@
 		<div id="logisticsTabMain">
 			<div id="sensorsButton"></div>
 			<div id="addFuelButton"></div>
+			<img src="assets/Interface/offlinetag.png" style="position:absolute;top:231px;left:469px;">
+			<img src="assets/Interface/offlinetag.png" style="position:absolute;top:332px;left:415px;">
+			<img src="assets/Interface/offlinetag.png" style="position:absolute;top:609px;left:279px;">
 		</div>
 		<div id="sensorsTab">
 			<h2>Sensors <span>Rating 1</span></h2>
@@ -108,7 +111,7 @@
 	<div id="bumperright"></div>
 </header>
 
-
+<img src="assets/Interface/zoomout.png" id="zoomoutButton">
 
 <footer>
 <h3>FUEL</h3>
@@ -333,17 +336,29 @@
 		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	}
 
-  	$('#scanbutton').on(touchEvent,function() {
-  		$('#overlayMenu').toggleClass('active')
-  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
-  		// $('#rangering use').animate({'opacity':1})
-  		$('#blips use').each(function() {
-  			var distance = Math.sqrt(Math.pow($(this).attr('x'),2) + Math.pow($(this).attr('y'),2));
-  			$(this).delay(distance/400*scanTime).animate({svgOpacity:1},200)
-
+	$('#zoomoutButton').on(touchEvent,function() {
+		$('#map').animate({svgTransform:'scale(1) translate(0,0)'},3000,'swing')
+  		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
+  			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
   		})
+  		$('#blips use').animate({svgOpacity:1},800)
+		$(this).fadeOut();
+	})
+
+  	$('#scanbutton').on(touchEvent,function() {
+  		if(useFuel(0.05)) {
+	  		$('#overlayMenu').toggleClass('active')
+	  		$('#rangering').animate({svgTransform:"scale(1)"},scanTime,'linear');
+	  		// $('#rangering use').animate({'opacity':1})
+	  		$('#blips use').each(function() {
+	  			var distance = Math.sqrt(Math.pow($(this).attr('x'),2) + Math.pow($(this).attr('y'),2));
+	  			$(this).delay(distance/400*scanTime).animate({svgOpacity:1},200)
+
+	  		})
+	  	}
   	});
   	$('#blips use').on(touchEvent,function() {
+  		$('#zoomoutButton').fadeIn();
   		$('#map').animate({svgTransform:'scale(20) translate(' + -$(this).attr('x') + ',' + -$(this).attr('y') + ')'},3000,'swing')
   		$(this).animate({svgOpacity:0},3500)
   		$('#'+$(this).attr('ref')).animate({svgOpacity:1},3000,'swing');
@@ -368,7 +383,7 @@
   	$('#fleetcolor').on(touchEvent, function() {
   		$('#fleetcolor, #deployarrow').animate({svgOpacity:0},600,'swing',function() {
   		})
-		gatherResourcesAnimation(5);
+		gatherResourcesAnimation(10);
   	})
 
   	$('#intro video').on('ended pause',function() {
