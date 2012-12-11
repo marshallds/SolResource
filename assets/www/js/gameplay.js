@@ -35,7 +35,7 @@ function retrieveResources() {
 		asteroidPlatinum -= 2;
 		updateResources(asteroidH2O, asteroidIron, asteroidPlatinum);
 		
-		if(asteroidH20 >= 12) {
+		if(asteroidH2O >= 12) {
 			return true;
 		}
 		else {
