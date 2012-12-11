@@ -18,7 +18,7 @@ function getAsteroidDetails() {
 }
 
 function retrieveResources() {
-	if (fuel > 0.01 && asteroidH2O > 12)
+	if (fuel > 0.01 && asteroidH2O >= 12)
 	{		
 		fuel = fuel - 0.01;
 		setFuel(fuel);
@@ -35,7 +35,7 @@ function retrieveResources() {
 		asteroidPlatinum -= 2;
 		updateResources(asteroidH2O, asteroidIron, asteroidPlatinum);
 		
-		if(asteroidH20 >= 12) {
+		if(asteroidH2O >= 12) {
 			return true;
 		}
 		else {
@@ -48,7 +48,7 @@ function retrieveResources() {
 }
 
 function refuel() {
-	if (hydrogen <= 20 && fuel <= 0.90) {
+	if (hydrogen >= 20 && fuel <= 0.90) {
 		fuel = fuel + 0.10;
 		hydrogen = hydrogen - 20;
 		
