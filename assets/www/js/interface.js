@@ -82,7 +82,7 @@ var zoomOut = function() {
   		$('#asteroidinfo').animate({svgOpacity:0},600,'swing',function() {
   			$('#asteroidinfo').animate({svgTransform:'translate(0,1000)'},0)
   		})
-  		$('#blips use').animate({svgOpacity:1},800)
+  		if($('#rangering').attr('transform')==" scale(1,1)") $('#blips use').animate({svgOpacity:1},1200)
 		$('#zoomoutButton').fadeOut();
 }
 
