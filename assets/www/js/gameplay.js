@@ -1,9 +1,9 @@
 var fuel = 0.30;
 
-var hydrogen = 20;
-var oxygen = 30;
-var iron = 40;
-var platinum = 10;
+var hydrogen = 0;
+var oxygen = 0;
+var iron = 0;
+var platinum = 0;
 
 var asteroidH2O = 60;
 var asteroidIron = 40;
